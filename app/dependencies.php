@@ -6,7 +6,9 @@ $container = $app->getContainer();
 // view renderer
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['view'];
-    return new Slim\Views\Twig($settings['template_path']);
+    return new Slim\Views\Twig($settings['template_path'],[
+        'cache' => $settings['template_cache_path']
+    ]);
 };
 
 // monolog

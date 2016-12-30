@@ -6,12 +6,13 @@ return [
 
         // Renderer settings
         'view' => [
-            'template_path' => __DIR__ . '/../templates/',
+            'template_path' => __DIR__ . '/../resources/templates/',
+            'template_cache_path' => __DIR__ . '/../resources/templates/cache/',
         ],
 
         // Monolog settings
         'logger' => [
-            'name' => 'slim-app',
+            'name' => 'personal-site',
             'path' => __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],

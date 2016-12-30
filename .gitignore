@@ -1,6 +1,8 @@
 /vendor/
 /logs/*
 !/logs/.gitkeep
-node_modules/
-.idea
-.env
+/node_modules/
+/.idea
+/.env
+/resources/templates/cache
+!/resources/templates/cache/.gitkeep
