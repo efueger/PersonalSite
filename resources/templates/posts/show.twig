@@ -1,0 +1,28 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <div class="container pt">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <bd>{{ post.published_at }}</bd>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content|markdown }}</p>
+                <hr>
+                <div id="disqus_thread"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footerjs %}
+    <script>
+        (function () {  // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+
+            s.src = '//markrailton.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+            powered by Disqus.</a></noscript>
+{% endblock %}
