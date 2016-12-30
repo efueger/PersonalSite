@@ -1,4 +1,5 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 html {
   height: 95%;
@@ -16,7 +17,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Mono', sans-serif;
   font-weight: 700;
   color: #333;
 }
