@@ -1,5 +1,11 @@
 <?php
 
+$twigCache = false;
+
+if(getenv('TWIG_CACHE') == true) {
+    $twigCache = __DIR__ . '/../resources/templates/cache/';
+}
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -8,7 +14,7 @@ return [
         // Renderer settings
         'view' => [
             'template_path' => __DIR__ . '/../resources/templates/',
-            'template_cache_path' => __DIR__ . '/../resources/templates/cache/',
+            'template_cache_path' => $twigCache,
         ],
 
         // Monolog settings
