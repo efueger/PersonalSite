@@ -1,4 +1,11 @@
 <?php
+
+$twigCache = false;
+
+if(getenv('TWIG_CACHE') == true) {
+    $twigCache = __DIR__ . '/../resources/templates/cache/';
+}
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -7,7 +14,7 @@ return [
         // Renderer settings
         'view' => [
             'template_path' => __DIR__ . '/../resources/templates/',
-            'template_cache_path' => __DIR__ . '/../resources/templates/cache/',
+            'template_cache_path' => $twigCache,
         ],
 
         // Monolog settings
@@ -16,12 +23,12 @@ return [
             'path' => __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
-    ],
-    'db' => [
-        'host' => getenv('DB_HOST'),
-        'name' => getenv('DB_NAME'),
-        'user' => getenv('DB_USER'),
-        'pass' => getenv('DB_PASS'),
-        'port' => getenv('DB_PORT'),
+        'db' => [
+            'host' => getenv('DB_HOST'),
+            'name' => getenv('DB_NAME'),
+            'user' => getenv('DB_USER'),
+            'pass' => getenv('DB_PASS'),
+            'port' => getenv('DB_PORT'),
+        ],
     ],
 ];
