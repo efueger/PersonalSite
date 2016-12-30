@@ -1,6 +1,6 @@
 {% extends 'layout.twig' %}
 {% block content %}
-    {% for post in posts %}
+    {% for post in posts if post.published %}
         {% if loop.index%2 == 0 %}
             <div id="grey">
         {% else %}
@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <bd>{{ post.published|date("l F jS, Y") }}</bd>
+                        <bd>{{ post.published_at|date("l F jS, Y") }}</bd>
                         <h4>{{ post.title }}</h4>
                         <p>{{ post.content|markdown|striptags|truncate(250, true) }}</p>
                         <a href="/blog/{{ post.slug }}">Continue Reading...</a>
