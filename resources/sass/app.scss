@@ -1,8 +1,7 @@
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 html {
-  height: 95%;
+  height: 100%;
 }
 
 body {
@@ -38,9 +37,9 @@ p {
 }
 
 .wrapper {
-  min-height: 95%;
+  min-height: 100%;
   margin-bottom: -150px;
-  padding-bottom: 100px;
+  padding-bottom: 150px;
 }
 
 a {
