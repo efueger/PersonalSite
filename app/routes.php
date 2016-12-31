@@ -60,6 +60,7 @@ $app->post('/login', function (Request $request, Response $response) {
     }
 
     if (password_verify($params['password'], $user->getPassword())) {
+        $_SESSION['user'] = $user->getId();
         return $response->withRedirect($this->router->pathFor('home'));
     }
 
