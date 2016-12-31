@@ -1,0 +1,33 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <div class="container pt">
+        <div class="col-md-10 col-md-offset-1">
+            <img src="/img/projects/{{ project.preview }}" alt="Project Image"
+                 class="img-responsive project-preview-img">
+            <h2 class="centered">{{ project.title }}</h2>
+            <div id="project-description">
+                {{ project.description|markdown }}
+            </div>
+            <div class="col-md-6 centered">
+                <div id="project-tech">
+                    <h3>Technologies Used</h3>
+                    <p>{{ project.technologies }}</p>
+                </div>
+            </div>
+            <div class="col-md-6 centered project-details">
+                <div id="project-links">
+                    <h3>Project Links</h3>
+                    {% if project.live_url != null %}
+                        <p><a href="{{ project.live_url }}" target="_blank">Live Site</a></p>
+                    {% endif %}
+                    {% if project.github_url != null %}
+                        <p><a href="{{ project.github_url }}" target="_blank">Project on Github</a></p>
+                    {% endif %}
+                    {% if project.live_url == null and project.github_url == null %}
+                        <p>No Links Available For This Project.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

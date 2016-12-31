@@ -6,3 +6,5 @@
 /.env
 /resources/templates/cache
 !/resources/templates/cache/.gitkeep
+/public/img/projects
+!/public/img/projects/.gitkeep
