@@ -19,6 +19,10 @@ $app->get('/blog', function (Request $request, Response $response) {
     return $this->view->render($response, 'posts/index.twig', ['posts' => $posts]);
 });
 
+$app->get('/blog/new', function(Request $request, Response $response) {
+    return $this->view->render($response, 'posts/new.twig');
+});
+
 $app->get('/blog/{slug}', function (Request $request, Response $response, $args) {
     $slug = (string)$args['slug'];
     $mapper = new PostMapper($this->db);
