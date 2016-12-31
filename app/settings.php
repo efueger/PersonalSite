@@ -24,14 +24,11 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
         'db' => [
-            'driver' => 'mysql',
             'host' => getenv('DB_HOST'),
-            'database' => getenv('DB_NAME'),
-            'username' => getenv('DB_USER'),
+            'name' => getenv('DB_NAME'),
+            'user' => getenv('DB_USER'),
             'pass' => getenv('DB_PASS'),
             'port' => getenv('DB_PORT'),
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
         ],
     ],
 ];
