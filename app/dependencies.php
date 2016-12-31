@@ -1,5 +1,6 @@
 <?php
 // DIC configuration
+use App\Controllers\AuthController;
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
@@ -19,6 +20,8 @@ $container['view'] = function ($c) {
     $engine = new MarkdownEngine\MichelfMarkdownEngine();
     $view->addExtension(new MarkdownExtension($engine));
 
+    $view->getEnvironment()->addGlobal('flash', $c->flash);
+
     return $view;
 };
 
@@ -31,10 +34,23 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-$container['db'] = function ($c) {
-    $db = $c->get('settings')['db'];
-    $pdo = new PDO("mysql:host=" . $db['host'] . ";dbname=" . $db['name'], $db['user'], $db['pass']);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    return $pdo;
+$capsule = new \Illuminate\Database\Capsule\Manager;
+$capsule->addConnection($container['settings']['db']);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+
+$container['db'] = function ($c) use ($capsule) {
+    return $capsule;
+};
+
+$container['auth'] = function ($c) {
+    return new \App\Auth\Auth;
+};
+
+$container['flash'] = function ($c) {
+    return new \Slim\Flash\Messages;
+};
+
+$container['AuthController'] = function ($container) {
+    return new AuthController($container);
 };
