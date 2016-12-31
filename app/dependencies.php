@@ -1,28 +1,24 @@
 <?php
-// DIC configuration
+
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
 $container = $app->getContainer();
 
-// view renderer
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['view'];
-    $view = new \Slim\Views\Twig($settings['template_path'], [
+    $twig = new \Slim\Views\Twig($settings['template_path'], [
         'cache' => $settings['template_cache_path']
     ]);
 
-    // Instantiate and add Slim specific extension
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
-    $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
-    $view->addExtension(new Twig_Extensions_Extension_Text());
+    $twig->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
+    $twig->addExtension(new Twig_Extensions_Extension_Text());
     $engine = new MarkdownEngine\MichelfMarkdownEngine();
-    $view->addExtension(new MarkdownExtension($engine));
-
-    return $view;
+    $twig->addExtension(new MarkdownExtension($engine));
+    return $twig;
 };
 
-// monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
     $logger = new Monolog\Logger($settings['name']);
