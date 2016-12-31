@@ -1,5 +1,7 @@
 <?php
 
+use App\Middleware\AuthMiddleware;
+use App\Middleware\GuestMiddleware;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -48,7 +50,7 @@ $app->get('/portfolio/{slug}', function (Request $request, Response $response, $
  */
 $app->get('/login', function (Request $request, Response $response) {
     return $this->view->render($response, 'auth/login.twig');
-})->setName('auth.login');
+})->add(new GuestMiddleware($container))->setName('auth.login');
 
 $app->post('/login', function (Request $request, Response $response) {
     $params = $request->getParams();
@@ -65,10 +67,10 @@ $app->post('/login', function (Request $request, Response $response) {
     }
 
     return $response->withRedirect($this->router->pathFor('auth.login'));
-});
+})->add(new GuestMiddleware($container));
 
 $app->get('/logout', function (Request $request, Response $response) {
     unset($_SESSION['user']);
 
     return $response->withRedirect($this->router->pathFor('home'));
-})->setName('auth.logout');
+})->add(new AuthMiddleware($container))->setName('auth.logout');
