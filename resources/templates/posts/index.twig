@@ -2,10 +2,11 @@
 {% block content %}
     {% for post in posts if post.published %}
         {% if loop.index%2 == 0 %}
-            <div id="grey">
+            {% set color = 'grey' %}
         {% else %}
-            <div id="white">
+            {% set color = 'white' %}
         {% endif %}
+        <div id="{{ color }}">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
