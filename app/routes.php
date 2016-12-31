@@ -32,3 +32,11 @@ $app->get('/portfolio', function (Request $request, Response $response) {
 
     return $this->view->render($response, 'projects/index.twig', ['projects' => $projects]);
 });
+
+$app->get('/portfolio/{slug}', function (Request $request, Response $response, $args) {
+    $slug = (string)$args['slug'];
+    $mapper = new ProjectMapper($this->db);
+    $project = $mapper->getProjectBySlug($slug);
+
+    return $this->view->render($response, 'projects/show.twig', ['project' => $project]);
+});
