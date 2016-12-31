@@ -2,6 +2,7 @@
 
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
+use Cocur\Slugify\Slugify;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -17,7 +18,29 @@ $app->get('/blog', function (Request $request, Response $response) {
     $posts = $mapper->getPosts();
 
     return $this->view->render($response, 'posts/index.twig', ['posts' => $posts]);
-});
+})->setName('blog.index');
+
+$app->post('/blog', function (Request $request, Response $response) {
+    $params = $request->getParams();
+    $slugify = new Slugify();
+    $slug = $slugify->slugify($params['title']);
+    $postData = [
+        'title' => $params['title'],
+        'slug' => $slug,
+        'content' => $params['content'],
+        'published_at' => $params['published_at'],
+    ];
+
+    $post = new PostEntity($postData);
+    $postMapper = new PostMapper($this->db);
+    $postMapper->save($post);
+
+    return $response->withRedirect($this->router->pathFor('blog.index'));
+})->add(new AuthMiddleware($container));
+
+$app->get('/blog/new', function (Request $request, Response $response) {
+    return $this->view->render($response, 'posts/new.twig');
+})->add(new AuthMiddleware($container));
 
 $app->get('/blog/{slug}', function (Request $request, Response $response, $args) {
     $slug = (string)$args['slug'];
