@@ -25,4 +25,20 @@ class ProjectMapper extends Mapper
             return new ProjectEntity($stmt->fetch());
         }
     }
+
+    public function save($project)
+    {
+        $query = "INSERT INTO projects (title, slug, description, live_url, github_url, technologies, preview, published_at) VALUES (:title, :slug, :description, :live_url, :github_url, :technologies, :preview, :published_at)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([
+            'title' => $project->getTitle(),
+            'slug' => $project->getSlug(),
+            'description' => $project->getDescription(),
+            'live_url' => $project->getLiveUrl(),
+            'github_url' => $project->getGithubUrl(),
+            'technologies' => $project->getTechnologies(),
+            'preview' => $project->getPreview(),
+            'published_at' => $project->getPublishedAt()
+        ]);
+    }
 }
