@@ -19,11 +19,14 @@ class ProjectMapper extends Mapper
     {
         $sql = "SELECT * FROM projects WHERE slug = :slug";
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute(['slug' => $slug]);
+        $stmt->execute(['slug' => $slug]);
+        $project = $stmt->fetch();
 
-        if ($result) {
-            return new ProjectEntity($stmt->fetch());
+        if ($project) {
+            return new ProjectEntity($project);
         }
+
+        return false;
     }
 
     public function save($project)

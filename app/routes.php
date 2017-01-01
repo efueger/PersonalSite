@@ -101,6 +101,10 @@ $app->get('/portfolio/{slug}', function (Request $request, Response $response, $
     $mapper = new ProjectMapper($this->db);
     $project = $mapper->getProjectBySlug($slug);
 
+    if (!$project) {
+        throw new \Slim\Exception\NotFoundException($request, $response);
+    }
+
     return $this->view->render($response, 'projects/show.twig', ['project' => $project]);
 });
 
