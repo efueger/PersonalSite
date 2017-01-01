@@ -2,12 +2,13 @@
 
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
+use Slim\Views\Twig;
 
 $container = $app->getContainer();
 
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['view'];
-    $twig = new \Slim\Views\Twig($settings['template_path'], [
+    $twig = new Twig($settings['template_path'], [
         'cache' => $settings['template_cache_path']
     ]);
 
@@ -16,6 +17,8 @@ $container['view'] = function ($c) {
     $twig->addExtension(new Twig_Extensions_Extension_Text());
     $engine = new MarkdownEngine\MichelfMarkdownEngine();
     $twig->addExtension(new MarkdownExtension($engine));
+    $twig['google_analytics_id'] =  $settings['google_analytics_id'];
+
     return $twig;
 };
 
