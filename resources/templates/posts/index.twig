@@ -13,7 +13,7 @@
                         <bd>{{ post.published_at|date("l F jS, Y") }}</bd>
                         <h4>{{ post.title }}</h4>
                         <p>{{ post.content|markdown|striptags|truncate(250, true) }}</p>
-                        <a href="/blog/{{ post.slug }}" data-turbolinks="false">Continue Reading...</a>
+                        <a href="{{ path_for('blog.show', {'slug': post.slug}) }}" data-turbolinks="false">Continue Reading...</a>
                     </div>
                 </div>
             </div>

@@ -37,11 +37,11 @@ $app->post('/blog', function (Request $request, Response $response) {
     $postMapper->save($post);
 
     return $response->withRedirect($this->router->pathFor('blog.index'));
-})->add(new AuthMiddleware($container));
+})->add(new AuthMiddleware($container))->setName('blog.new.post');
 
 $app->get('/blog/new', function (Request $request, Response $response) {
     return $this->view->render($response, 'posts/new.twig');
-})->add(new AuthMiddleware($container));
+})->add(new AuthMiddleware($container))->setName('blog.new');
 
 $app->get('/blog/{slug}', function (Request $request, Response $response, $args) {
     $slug = (string)$args['slug'];
@@ -53,7 +53,7 @@ $app->get('/blog/{slug}', function (Request $request, Response $response, $args)
     }
 
     return $this->view->render($response, 'posts/show.twig', ['post' => $post]);
-});
+})->setName('blog.show');
 
 /**
  * Portfolio Routes
@@ -91,11 +91,11 @@ $app->post('/portfolio', function (Request $request, Response $response) {
     $projectMapper->save($project);
 
     return $response->withRedirect($this->router->pathFor('portfolio.index'));
-})->add(new AuthMiddleware($container));
+})->add(new AuthMiddleware($container))->setName('portfolio.new.post');
 
 $app->get('/portfolio/new', function (Request $request, Response $response) {
     return $this->view->render($response, 'projects/new.twig');
-})->add(new AuthMiddleware($container));
+})->add(new AuthMiddleware($container))->setName('portfolio.new');
 
 $app->get('/portfolio/{slug}', function (Request $request, Response $response, $args) {
     $slug = (string)$args['slug'];
@@ -107,7 +107,7 @@ $app->get('/portfolio/{slug}', function (Request $request, Response $response, $
     }
 
     return $this->view->render($response, 'projects/show.twig', ['project' => $project]);
-});
+})->setName('portfolio.show');
 
 /**
  * Auth Routes
@@ -131,7 +131,7 @@ $app->post('/login', function (Request $request, Response $response) {
     }
 
     return $response->withRedirect($this->router->pathFor('auth.login'));
-})->add(new GuestMiddleware($container));
+})->add(new GuestMiddleware($container))->setName('auth.login.post');
 
 $app->get('/logout', function (Request $request, Response $response) {
     unset($_SESSION['user']);
