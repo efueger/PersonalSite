@@ -17,13 +17,13 @@
             <div class="col-md-6 centered project-details">
                 <div id="project-links">
                     <h3>Project Links</h3>
-                    {% if project.live_url != null %}
-                        <p><a href="{{ project.live_url }}" target="_blank">Live Site</a></p>
+                    {% if project.liveurl != null %}
+                        <p><a href="{{ project.liveurl }}" target="_blank">Live Site</a></p>
                     {% endif %}
-                    {% if project.github_url != null %}
-                        <p><a href="{{ project.github_url }}" target="_blank">Project on Github</a></p>
+                    {% if project.githuburl != null %}
+                        <p><a href="{{ project.githuburl }}" target="_blank">Project on Github</a></p>
                     {% endif %}
-                    {% if project.live_url == null and project.github_url == null %}
+                    {% if project.liveurl == null and project.githuburl == null %}
                         <p>No Links Available For This Project.</p>
                     {% endif %}
                 </div>
