@@ -47,6 +47,10 @@ $app->get('/blog/{slug}', function (Request $request, Response $response, $args)
     $mapper = new PostMapper($this->db);
     $post = $mapper->getPostBySlug($slug);
 
+    if ($post == false) {
+        throw new \Slim\Exception\NotFoundException($request, $response);
+    }
+
     return $this->view->render($response, 'posts/show.twig', ['post' => $post]);
 });
 
