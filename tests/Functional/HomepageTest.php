@@ -9,7 +9,7 @@ class HomepageTest extends BaseTestCase
         $response = $this->runApp('GET', '/');
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertContains('Hi, I\'m Mark!', (string)$response->getBody());
+        $this->assertContains('Hi there, I\'m Mark!', (string)$response->getBody());
     }
 
     public function testPostHomepageNotAllowed()
