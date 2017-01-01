@@ -3,6 +3,7 @@
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
 use Cocur\Slugify\Slugify;
+use Slim\Exception\NotFoundException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -46,6 +47,10 @@ $app->get('/blog/{slug}', function (Request $request, Response $response, $args)
     $slug = (string)$args['slug'];
     $mapper = new PostMapper($this->db);
     $post = $mapper->getPostBySlug($slug);
+
+    if (!$post) {
+        throw new NotFoundException($request, $response);
+    }
 
     return $this->view->render($response, 'posts/show.twig', ['post' => $post]);
 });
@@ -96,6 +101,10 @@ $app->get('/portfolio/{slug}', function (Request $request, Response $response, $
     $slug = (string)$args['slug'];
     $mapper = new ProjectMapper($this->db);
     $project = $mapper->getProjectBySlug($slug);
+
+    if (!$project) {
+        throw new NotFoundException($request, $response);
+    }
 
     return $this->view->render($response, 'projects/show.twig', ['project' => $project]);
 });

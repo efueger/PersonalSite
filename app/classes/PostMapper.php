@@ -19,11 +19,14 @@ class PostMapper extends Mapper
     {
         $sql = "SELECT * FROM posts WHERE slug = :slug";
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute(['slug' => $slug]);
+        $stmt->execute(['slug' => $slug]);
+        $post = $stmt->fetch();
 
-        if ($result) {
-            return new PostEntity($stmt->fetch());
+        if ($post) {
+            return new PostEntity($post);
         }
+
+        return false;
     }
 
     public function save(PostEntity $post)
