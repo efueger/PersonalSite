@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
-html {
-  height: 100%;
-}
-
 body {
-  height: 100%;
   background-color: #ffffff;
   font-family: 'Roboto Mono', sans-serif;
   font-weight: 400;
@@ -34,12 +29,6 @@ p {
 
 .centered {
   text-align: center;
-}
-
-.wrapper {
-  min-height: 100%;
-  margin-bottom: -150px;
-  padding-bottom: 150px;
 }
 
 a {
