@@ -6,8 +6,8 @@ use Cocur\Slugify\Slugify;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$app->get('/', function ($request, $response, $args) {
-    return $this->view->render($response, 'index.twig', $args);
+$app->get('/', function ($request, $response) {
+    return $this->view->render($response, 'index.twig');
 })->setName('home');
 
 /**
@@ -58,7 +58,39 @@ $app->get('/portfolio', function (Request $request, Response $response) {
     $projects = $mapper->getProjects();
 
     return $this->view->render($response, 'projects/index.twig', ['projects' => $projects]);
-});
+})->setName('portfolio.index');
+
+$app->post('/portfolio', function (Request $request, Response $response) {
+    $params = $request->getParams();
+
+    $files = $request->getUploadedFiles();
+    $previewImage = $files['preview'];
+    $previewImageFileName = $previewImage->getClientFilename();
+    $previewImage->moveTo(__DIR__."/../public/img/projects/{$previewImageFileName}");
+
+    $slugify = new Slugify();
+    $slug = $slugify->slugify($params['title']);
+    $projectData = [
+        'title' => $params['title'],
+        'slug' => $slug,
+        'description' => $params['description'],
+        'live_url' => $params['live_url'],
+        'github_url' => $params['github_url'],
+        'technologies' => $params['technologies'],
+        'preview' => $previewImageFileName,
+        'published_at' => $params['published_at'],
+    ];
+
+    $project = new ProjectEntity($projectData);
+    $projectMapper = new ProjectMapper($this->db);
+    $projectMapper->save($project);
+
+    return $response->withRedirect($this->router->pathFor('portfolio.index'));
+})->add(new AuthMiddleware($container));
+
+$app->get('/portfolio/new', function (Request $request, Response $response) {
+    return $this->view->render($response, 'projects/new.twig');
+})->add(new AuthMiddleware($container));
 
 $app->get('/portfolio/{slug}', function (Request $request, Response $response, $args) {
     $slug = (string)$args['slug'];
