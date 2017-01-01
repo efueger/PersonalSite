@@ -3,7 +3,7 @@
 !/logs/.gitkeep
 /node_modules/
 /.idea
-/.env
+.env
 /resources/templates/cache
 !/resources/templates/cache/.gitkeep
 /public/img/projects

@@ -15,6 +15,7 @@ return [
         'view' => [
             'template_path' => __DIR__ . '/../resources/templates/',
             'template_cache_path' => $twigCache,
+            'google_analytics_id' => getenv('GOOGLE_ANALYTICS_ID'),
         ],
 
         // Monolog settings
