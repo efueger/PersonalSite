@@ -9,7 +9,6 @@
     "turbolinks": "^5.0.0"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "datetimepicker": "^0.1.37"
+    "bootstrap": "^3.3.7"
   }
 }
