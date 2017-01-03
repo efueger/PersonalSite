@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Blog;
+
+use App\Mapper;
+
 class PostMapper extends Mapper
 {
     public function getPosts()

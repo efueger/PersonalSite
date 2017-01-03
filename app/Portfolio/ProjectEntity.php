@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Portfolio;
+
 class ProjectEntity
 {
     protected $id;

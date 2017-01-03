@@ -10,26 +10,23 @@ if (PHP_SAPI == 'cli-server') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
-spl_autoload_register(function ($classname) {
-    require (__DIR__."/../app/classes/" . $classname . ".php");
-});
 
 session_start();
 
 // Instantiate the app
 $dotenv = new \Dotenv\Dotenv(__DIR__.'/../');
 $dotenv->load();
-$settings = require __DIR__ . '/../app/settings.php';
+$settings = require __DIR__ . '/../app/Settings.php';
 $app = new \Slim\App($settings);
 
 // Set up dependencies
-require __DIR__ . '/../app/dependencies.php';
+require __DIR__ . '/../app/Dependencies.php';
 
 // Register middleware
-require __DIR__ . '/../app/middleware.php';
+require __DIR__ . '/../app/Middleware.php';
 
 // Register routes
-require __DIR__ . '/../app/routes.php';
+require __DIR__ . '/../app/Routes.php';
 
 // Run app
 $app->run();

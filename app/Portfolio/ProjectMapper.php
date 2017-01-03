@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Portfolio;
+
+use App\Mapper;
+
 class ProjectMapper extends Mapper
 {
     public function getProjects()
