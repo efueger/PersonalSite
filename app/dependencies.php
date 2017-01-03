@@ -15,8 +15,7 @@ $container['view'] = function ($c) {
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
     $twig->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
     $twig->addExtension(new Twig_Extensions_Extension_Text());
-    $engine = new MarkdownEngine\MichelfMarkdownEngine();
-    $twig->addExtension(new MarkdownExtension($engine));
+    $twig->addExtension(new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine()));
     $twig['google_analytics_id'] =  $settings['google_analytics_id'];
 
     return $twig;
