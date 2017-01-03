@@ -1,5 +1,9 @@
 <?php
 
+namespace App\User;
+
+use App\Mapper;
+
 class UserMapper extends Mapper
 {
     public function getUser($email)

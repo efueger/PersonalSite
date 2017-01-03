@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Blog;
+
 class PostEntity
 {
     protected $id;
