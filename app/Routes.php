@@ -1,7 +1,12 @@
 <?php
 
+use App\Blog\PostEntity;
+use App\Blog\PostMapper;
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
+use App\Portfolio\ProjectEntity;
+use App\Portfolio\ProjectMapper;
+use App\User\UserMapper;
 use Cocur\Slugify\Slugify;
 use Slim\Exception\NotFoundException;
 use Slim\Http\Request;

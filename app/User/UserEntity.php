@@ -1,5 +1,7 @@
 <?php
 
+namespace App\User;
+
 class UserEntity
 {
     protected $id;
