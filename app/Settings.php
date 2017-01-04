@@ -25,6 +25,7 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
         'db' => [
+            'driver' => getenv('DB_DRIVER'),
             'host' => getenv('DB_HOST'),
             'name' => getenv('DB_NAME'),
             'user' => getenv('DB_USER'),

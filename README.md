@@ -1,3 +1,5 @@
+[ ![Codeship Status for railto/PersonalSite](https://app.codeship.com/projects/fae36c30-b491-0134-45bc-4ef77e5b4898/status?branch=master)](https://app.codeship.com/projects/193761)
+
 This repo holds the source code for the application that runs my personal site at https://markrailton.com
 
 Please bear in mind that this is a personal project, unless it's for something amazing then PRs etc will be ignored.
