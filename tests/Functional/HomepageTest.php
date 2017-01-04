@@ -4,7 +4,7 @@ namespace Tests\Functional;
 
 class HomepageTest extends BaseTestCase
 {
-    public function testGetHomepageWithoutName()
+    public function testGetHomepage()
     {
         $response = $this->runApp('GET', '/');
 
