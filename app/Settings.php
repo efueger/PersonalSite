@@ -2,7 +2,7 @@
 
 $twigCache = false;
 
-if(getenv('TWIG_CACHE') == true) {
+if (getenv('TWIG_CACHE') == true) {
     $twigCache = __DIR__ . '/../resources/templates/cache/';
 }
 

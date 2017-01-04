@@ -35,7 +35,9 @@ class PostMapper extends Mapper
 
     public function save(PostEntity $post)
     {
-        $query = "INSERT INTO posts (title, slug, content, published_at) VALUES (:title, :slug, :content, :published_at)";
+        $query = "INSERT INTO posts (title, slug, content, published_at) 
+            VALUES (:title, :slug, :content, :published_at)"
+        ;
         $stmt = $this->db->prepare($query);
         $stmt->execute([
             'title' => $post->getTitle(),

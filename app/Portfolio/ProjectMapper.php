@@ -35,7 +35,10 @@ class ProjectMapper extends Mapper
 
     public function save($project)
     {
-        $query = "INSERT INTO projects (title, slug, description, live_url, github_url, technologies, preview, published_at) VALUES (:title, :slug, :description, :live_url, :github_url, :technologies, :preview, :published_at)";
+        $query = "INSERT INTO 
+            projects (title, slug, description, live_url, github_url, technologies, preview, published_at) 
+            VALUES (:title, :slug, :description, :live_url, :github_url, :technologies, :preview, :published_at)"
+        ;
         $stmt = $this->db->prepare($query);
         $stmt->execute([
             'title' => $project->getTitle(),

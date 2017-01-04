@@ -38,7 +38,7 @@ $container['db'] = function ($c) {
 };
 
 $container['notFoundHandler'] = function ($c) {
-    return function($request, $response) use ($c) {
+    return function ($request, $response) use ($c) {
         return $c['view']->render($response->withStatus(404), 'errors/404.twig');
     };
 };
