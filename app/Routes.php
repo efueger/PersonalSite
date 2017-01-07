@@ -2,15 +2,12 @@
 
 use App\Controllers\AuthController;
 use App\Controllers\BlogController;
+use App\Controllers\PagesController;
 use App\Controllers\PortfolioController;
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
-use Slim\Http\Request;
-use Slim\Http\Response;
 
-$app->get('/', function (Request $request, Response $response) {
-    return $this->view->render($response, 'index.twig');
-})->setName('home');
+$app->get('/', PagesController::class . ':index')->setName('home');
 
 /**
  * Blog Routes
