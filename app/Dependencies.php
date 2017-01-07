@@ -2,6 +2,7 @@
 
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
+use Slim\Flash\Messages;
 use Slim\Views\Twig;
 
 $container = $app->getContainer();
@@ -35,6 +36,10 @@ $container['db'] = function ($c) {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
+};
+
+$container['flash'] = function () {
+    return new Messages();
 };
 
 $container['notFoundHandler'] = function ($c) {
