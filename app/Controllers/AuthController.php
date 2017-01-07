@@ -32,11 +32,22 @@ class AuthController extends BaseController
         $_SESSION['user'] = $user->getId();
         $this->flash->addMessage('success', 'You have been successfully logged in');
 
-        return $response->withRedirect($this->router->pathFor('home'));
+        $redirectTo = $this->router->pathFor('home');
+
+        if (isset($_SESSION['redirectUri'])) {
+            $redirectTo = $_SESSION['redirectUri'];
+            unset($_SESSION['redirectUri']);
+        }
+
+        return $response->withRedirect($redirectTo);
     }
 
     public function logout(Request $request, Response $response)
     {
+        if (!isset($_SESSION['user'])) {
+            return $response->withRedirect($this->router->pathFor('home'));
+        }
+
         unset($_SESSION['user']);
         $this->flash->addMessage('success', 'You have been successfully logged out');
 
