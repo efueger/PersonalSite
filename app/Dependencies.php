@@ -7,6 +7,10 @@ use Slim\Views\Twig;
 
 $container = $app->getContainer();
 
+$container['flash'] = function () {
+    return new Messages();
+};
+
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['view'];
     $twig = new Twig($settings['template_path'], [
@@ -17,7 +21,8 @@ $container['view'] = function ($c) {
     $twig->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
     $twig->addExtension(new Twig_Extensions_Extension_Text());
     $twig->addExtension(new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine()));
-    $twig['google_analytics_id'] =  $settings['google_analytics_id'];
+    $twig->getEnvironment()->addGlobal('flash', $c['flash']);
+    $twig->getEnvironment()->addGlobal('google_analytics_id', $settings['google_analytics_id']);
 
     return $twig;
 };
@@ -36,10 +41,6 @@ $container['db'] = function ($c) {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
-};
-
-$container['flash'] = function () {
-    return new Messages();
 };
 
 $container['notFoundHandler'] = function ($c) {
