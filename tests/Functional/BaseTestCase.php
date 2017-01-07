@@ -32,6 +32,9 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
      */
     public function runApp($requestMethod, $requestUri, $requestData = null)
     {
+        // Set session to blank array
+        $_SESSION = [];
+
         // Create a mock environment for testing with
         $environment = Environment::mock(
             [
