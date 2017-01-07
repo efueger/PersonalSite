@@ -10,10 +10,13 @@ class UserMapper extends Mapper
     {
         $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->db->prepare($query);
-        $result = $stmt->execute(['email' => $email]);
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch();
 
-        if ($result) {
-            return new UserEntity($stmt->fetch());
+        if ($user) {
+            return new UserEntity($user);
         }
+        
+        return false;
     }
 }
