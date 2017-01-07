@@ -1,33 +1,34 @@
 <?php
 
-namespace App\Blog;
+namespace App\Models\Portfolio;
 
-class PostEntity
+class ProjectEntity
 {
     protected $id;
     protected $title;
     protected $slug;
-    protected $content;
-    protected $published;
+    protected $description;
     protected $published_at;
+    protected $published;
+    protected $live_url;
+    protected $github_url;
+    protected $technologies;
+    protected $preview;
 
-    /**
-     * Accept an array of data matching properties of this class
-     * and create the class
-     *
-     * @param array $data The data to use to create
-     */
     public function __construct(array $data)
     {
-        // no id if we're creating
         if (isset($data['id'])) {
             $this->id = $data['id'];
         }
 
         $this->title = $data['title'];
         $this->slug = $data['slug'];
-        $this->content = $data['content'];
+        $this->description = $data['description'];
         $this->published_at = $data['published_at'];
+        $this->live_url = $data['live_url'];
+        $this->github_url = $data['github_url'];
+        $this->technologies = $data['technologies'];
+        $this->preview = $data['preview'];
 
         if ($this->published_at == null || $this->published_at > date("Y-m-d H:i:s", time())) {
             $this->published = false;
@@ -46,9 +47,9 @@ class PostEntity
         return $this->title;
     }
 
-    public function getContent()
+    public function getDescription()
     {
-        return $this->content;
+        return $this->description;
     }
 
     public function getSlug()
@@ -64,5 +65,25 @@ class PostEntity
     public function getPublishedAt()
     {
         return $this->published_at;
+    }
+
+    public function getLiveUrl()
+    {
+        return $this->live_url;
+    }
+
+    public function getGithubUrl()
+    {
+        return $this->github_url;
+    }
+
+    public function getTechnologies()
+    {
+        return $this->technologies;
+    }
+
+    public function getPreview()
+    {
+        return $this->preview;
     }
 }

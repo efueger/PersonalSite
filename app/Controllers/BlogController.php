@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Blog\PostEntity;
-use App\Blog\PostMapper;
+use App\Models\Blog\PostEntity;
+use App\Models\Blog\PostMapper;
 use Cocur\Slugify\Slugify;
 use Slim\Exception\NotFoundException;
 use Slim\Http\Request;

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\User;
+namespace App\Models\User;
 
-use App\Mapper;
+use App\Models\BaseMapper;
 
-class UserMapper extends Mapper
+class UserMapper extends BaseMapper
 {
     public function getUser($email)
     {

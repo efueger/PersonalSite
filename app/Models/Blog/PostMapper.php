@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Blog;
+namespace App\Models\Blog;
 
-use App\Mapper;
+use App\Models\BaseMapper;
 
-class PostMapper extends Mapper
+class PostMapper extends BaseMapper
 {
     public function getPosts()
     {

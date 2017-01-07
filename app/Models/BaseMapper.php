@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-abstract class Mapper
+abstract class BaseMapper
 {
     protected $db;
 

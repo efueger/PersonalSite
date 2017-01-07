@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Portfolio;
+namespace App\Models\Portfolio;
 
-use App\Mapper;
+use App\Models\BaseMapper;
 
-class ProjectMapper extends Mapper
+class ProjectMapper extends BaseMapper
 {
     public function getProjects()
     {

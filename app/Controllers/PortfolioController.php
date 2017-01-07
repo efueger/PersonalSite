@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Portfolio\ProjectEntity;
-use App\Portfolio\ProjectMapper;
+use App\Models\Portfolio\ProjectEntity;
+use App\Models\Portfolio\ProjectMapper;
 use Cocur\Slugify\Slugify;
 use Slim\Exception\NotFoundException;
 use Slim\Http\Request;

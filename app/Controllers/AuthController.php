@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\User\UserMapper;
+use App\Models\User\UserMapper;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
