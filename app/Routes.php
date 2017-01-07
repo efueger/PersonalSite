@@ -15,7 +15,7 @@ $app->get('/', PagesController::class . ':index')->setName('home');
 $app->get('/blog', BlogController::class . ':index')->setName('blog.index');
 $app->get('/blog/new', BlogController::class . ':new')->add(new AuthMiddleware($container))->setName('blog.new');
 $app->get('/blog/{slug}', BlogController::class . ':show')->setName('blog.show');
-$app->post('/blog', BlogController::class . ':store')->add(new AuthMiddleware($container))->setName('blog.new.post');
+$app->post('/blog', BlogController::class . ':store')->add(new AuthMiddleware($container))->setName('blog.store');
 
 /**
  * Portfolio Routes
