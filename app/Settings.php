@@ -1,10 +1,32 @@
 <?php
 
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\VarDumper;
+
 $twigCache = false;
 
 if (getenv('TWIG_CACHE') == true) {
     $twigCache = __DIR__ . '/../resources/templates/cache/';
 }
+
+VarDumper::setHandler(function ($var) {
+    $cloner = new VarCloner;
+    $htmlDumper = new HtmlDumper;
+    $htmlDumper->setStyles([
+        'default' => 'background-color:#fff; color:#FF8400; line-height:1.2em; font:12px Menlo, Monaco, Consolas, 
+        monospace; word-wrap: break-word; white-space: pre-wrap; position:relative; z-index:99999; word-break: normal',
+        'public' => 'color:#222',
+        'protected' => 'color:#222',
+        'private' => 'color:#222',
+    ]);
+
+    $dumper = PHP_SAPI === 'cli' ? new CliDumper : $htmlDumper;
+
+    $dumper->dump($cloner->cloneVar($var));
+    die();
+});
 
 return [
     'settings' => [
