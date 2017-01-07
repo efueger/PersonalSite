@@ -76,7 +76,7 @@ $app->post('/portfolio', function (Request $request, Response $response) {
     $files = $request->getUploadedFiles();
     $previewImage = $files['preview'];
     $previewImageFileName = $previewImage->getClientFilename();
-    $previewImage->moveTo(__DIR__."/../public/img/projects/{$previewImageFileName}");
+    $previewImage->moveTo(__DIR__ . "/../public/img/projects/{$previewImageFileName}");
 
     $slugify = new Slugify();
     $slug = $slugify->slugify($params['title']);
@@ -127,19 +127,24 @@ $app->post('/login', function (Request $request, Response $response) {
     $user = $mapper->getUser($params['email']);
 
     if (!$user) {
+        $this->flash->addMessage('danger', 'There was a problem logging you in, please check your email and password');
         return $response->withRedirect($this->router->pathFor('auth.login'));
     }
 
-    if (password_verify($params['password'], $user->getPassword())) {
-        $_SESSION['user'] = $user->getId();
-        return $response->withRedirect($this->router->pathFor('home'));
+    if (!password_verify($params['password'], $user->getPassword())) {
+        $this->flash->addMessage('danger', 'There was a problem logging you in, please check your email and password');
+        return $response->withRedirect($this->router->pathFor('auth.login'));
     }
 
-    return $response->withRedirect($this->router->pathFor('auth.login'));
+    $_SESSION['user'] = $user->getId();
+    $this->flash->addMessage('success', 'You have been successfully logged in');
+
+    return $response->withRedirect($this->router->pathFor('home'));
 })->add(new GuestMiddleware($container))->setName('auth.login.post');
 
 $app->get('/logout', function (Request $request, Response $response) {
     unset($_SESSION['user']);
+    $this->flash->addMessage('success', 'You have been successfully logged out');
 
     return $response->withRedirect($this->router->pathFor('home'));
 })->add(new AuthMiddleware($container))->setName('auth.logout');
