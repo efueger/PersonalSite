@@ -20,12 +20,12 @@ class AuthController extends BaseController
         $user = $mapper->getUser($params['email']);
 
         if (!$user) {
-            $this->flash->addMessage('danger', 'There was a problem logging you in, please check your email and password');
+            $this->flash->addMessage('danger', 'There was a problem logging you in, please check your credentials');
             return $response->withRedirect($this->router->pathFor('auth.getLogin'));
         }
 
         if (!password_verify($params['password'], $user->getPassword())) {
-            $this->flash->addMessage('danger', 'There was a problem logging you in, please check your email and password');
+            $this->flash->addMessage('danger', 'There was a problem logging you in, please check your credentials');
             return $response->withRedirect($this->router->pathFor('auth.getLogin'));
         }
 
