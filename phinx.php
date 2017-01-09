@@ -9,7 +9,7 @@ return [
     ],
     'environments' => [
         'default_migration_table' => 'phinxlog',
-        'develop' => [
+        'default' => [
             'adapter' => 'mysql',
             'host' => getenv('DB_HOST'),
             'name' => getenv('DB_NAME'),
