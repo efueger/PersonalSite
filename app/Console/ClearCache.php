@@ -45,6 +45,5 @@ class ClearCache extends Command
             default:
                 $output->writeln("<error>You must specify cache type</error>");
         }
-
     }
 }
