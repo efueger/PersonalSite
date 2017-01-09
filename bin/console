@@ -1,6 +1,9 @@
 <?php
+
 use App\Console\ClearCache;
-use Phinx\Console\Command\{Breakpoint, Create, Migrate, Rollback, SeedCreate, SeedRun, Status, Test};
+use Phinx\Console\Command\{
+    Breakpoint, Create, Migrate, Rollback, SeedCreate, SeedRun, Status, Test
+};
 use Symfony\Component\Console\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
