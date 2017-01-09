@@ -48,16 +48,16 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
         $response = new Response();
 
         // Use the application settings
-        $settings = require __DIR__ . '/../../app/Settings.php';
+        $settings = require __DIR__ . '/../../app/settings.php';
 
         // Instantiate the application
         $app = new App($settings);
 
         // Set up dependencies
-        require __DIR__ . '/../../app/Dependencies.php';
+        require __DIR__ . '/../../app/dependencies.php';
 
         // Register routes
-        require __DIR__ . '/../../app/Routes.php';
+        require __DIR__ . '/../../app/routes.php';
 
         // Process the application
         $response = $app->process($request, $response);
