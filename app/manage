@@ -1,0 +1,11 @@
+<?php
+use App\Console\ClearCache;
+use Symfony\Component\Console\Application;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$app = new Application('PersonalSite Management', '1.0');
+
+$app->add(new ClearCache);
+
+$app->run();
