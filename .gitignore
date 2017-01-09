@@ -4,7 +4,7 @@
 /node_modules/
 /.idea
 .env
-/resources/templates/cache
-!/resources/templates/cache/.gitkeep
+/cache/templates
+!/cache/templates/.gitkeep
 /public/img/projects
 !/public/img/projects/.gitkeep

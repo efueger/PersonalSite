@@ -8,7 +8,7 @@ use Symfony\Component\VarDumper\VarDumper;
 $twigCache = false;
 
 if (getenv('TWIG_CACHE') == true) {
-    $twigCache = __DIR__ . '/../resources/templates/cache/';
+    $twigCache = __DIR__ . '/../cache/templates/';
 }
 
 VarDumper::setHandler(function ($var) {
@@ -35,7 +35,7 @@ return [
 
         // Renderer settings
         'view' => [
-            'template_path' => __DIR__ . '/../resources/templates/',
+            'template_path' => __DIR__ . '/Views/',
             'template_cache_path' => $twigCache,
             'google_analytics_id' => getenv('GOOGLE_ANALYTICS_ID'),
         ],
