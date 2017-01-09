@@ -1,5 +1,19 @@
 <?php
-
+require __DIR__ . '/../vendor/autoload.php';
 session_start();
 
-require_once __DIR__ . '/../app/bootstrap.php';
+// Instantiate the app
+$dotenv = new \Dotenv\Dotenv(__DIR__.'/../');
+$dotenv->load();
+
+$settings = require __DIR__ . '/../app/settings.php';
+$app = new \Slim\App($settings);
+
+// Set up dependencies
+require __DIR__ . '/../app/dependencies.php';
+
+// Register routes
+require __DIR__ . '/../app/routes.php';
+
+// Run app
+$app->run();
