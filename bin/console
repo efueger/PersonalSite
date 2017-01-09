@@ -1,11 +1,23 @@
 <?php
 use App\Console\ClearCache;
+use Phinx\Console\Command\{Breakpoint, Create, Migrate, Rollback, SeedCreate, SeedRun, Status, Test};
 use Symfony\Component\Console\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = new Application('PersonalSite Management', '1.0');
 
-$app->add(new ClearCache);
+$app->add(new ClearCache());
+
+$app->addCommands([
+    (new Create())->setName('db:create'),
+    (new Migrate())->setName('db:migrate'),
+    (new Rollback())->setName('db:rollback'),
+    (new Status())->setName('db:status'),
+    (new Breakpoint())->setName('db:breakpoint'),
+    (new Test())->setName('db:test'),
+    new SeedCreate(),
+    new SeedRun(),
+]);
 
 $app->run();
