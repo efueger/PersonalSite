@@ -24,7 +24,7 @@ class ClearCache extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $fs = new Filesystem();
-        $cacheDir = __DIR__.'/../../cache/templates';
+        $cacheDir = __DIR__ . '/../../cache';
 
         $type = $input->getArgument('type');
         $types = ['template'];
@@ -35,9 +35,9 @@ class ClearCache extends Command
 
         switch ($type) {
             case "template":
-                $files = array_diff(scandir($cacheDir), ['..', '.']);
+                $files = array_diff(scandir($cacheDir . '/templates/'), ['..', '.']);
                 foreach ($files as $file) {
-                    $fs->remove($cacheDir.'/'.$file);
+                    $fs->remove($cacheDir . '/templates/' . $file);
                 }
                 $output->writeln("<info>Successfully removed template cache files</info>");
                 break;
