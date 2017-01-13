@@ -79,4 +79,13 @@ class PostMapper extends BaseMapper
 
         return $posts;
     }
+
+    public function delete($slug)
+    {
+        $sql = "DELETE FROM posts WHERE slug = :slug";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['slug' => $slug]);
+
+        return true;
+    }
 }

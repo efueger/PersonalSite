@@ -63,4 +63,14 @@ class BlogController extends BaseController
 
         return $this->view->render($response, 'admin/blog/posts/published.twig', compact('posts'));
     }
+
+    public function destroy(Request $request, Response $response, array $args)
+    {
+        $slug = (string)$args['slug'];
+        $mapper = new PostMapper($this->db);
+        $mapper->delete($slug);
+
+        $this->flash->addMessage('success', 'Post successfully deleted');
+        return $response->withRedirect($this->router->pathFor('admin.blog.published'));
+    }
 }

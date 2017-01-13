@@ -18,7 +18,6 @@ $app->get('/blog', BlogController::class . ':index')
 $app->get('/blog/{slug}', BlogController::class . ':show')
     ->setName('blog.show');
 
-
 /**
  * Portfolio Routes
  */
@@ -55,7 +54,8 @@ $app->group('/admin', function () use ($app) {
     $app->group('/blog', function () use ($app) {
         $app->get('/published', '\App\Controllers\BlogController:listPublished')->setName('admin.blog.published');
         $app->get('/new', '\App\Controllers\BlogController:new')->setName('admin.blog.new');
-        $app->post('/blog', '\App\Controllers\BlogController:store')->setName('admin.blog.store');
+        $app->post('', '\App\Controllers\BlogController:store')->setName('admin.blog.store');
+        $app->get('/{slug}/delete', '\App\Controllers\BlogController:destroy')->setName('admin.blog.destroy');
     });
 
 })->add(new AuthMiddleware($container));
