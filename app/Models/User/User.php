@@ -2,7 +2,7 @@
 
 namespace App\Models\User;
 
-class UserEntity
+class User
 {
     protected $id;
     protected $email;

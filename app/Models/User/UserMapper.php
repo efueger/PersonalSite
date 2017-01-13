@@ -14,7 +14,7 @@ class UserMapper extends BaseMapper
         $user = $stmt->fetch();
 
         if ($user) {
-            return new UserEntity($user);
+            return new User($user);
         }
         
         return false;
