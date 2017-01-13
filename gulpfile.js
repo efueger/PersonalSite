@@ -14,7 +14,7 @@ gulp.task('appcss', function () {
 
 gulp.task('vendorcss', function () {
     return gulp
-        .src(['node_modules/bootstrap/dist/css/bootstrap.css'])
+        .src(['node_modules/bootstrap/dist/css/bootstrap.css', 'node_modules/font-awesome/css/font-awesome.css'])
         .pipe(concat('vendor.css'))
         .pipe(clean())
         .pipe(gulp.dest('public/css'));
@@ -35,9 +35,15 @@ gulp.task('appjs', function () {
         .pipe(gulp.dest('public/js'))
 });
 
+gulp.task('vendorfonts', function () {
+    return gulp
+        .src(['node_modules/font-awesome/fonts/*', 'node_modules/bootstrap/dist/fonts/*'])
+        .pipe(gulp.dest('public/fonts'));
+});
+
 gulp.task('watch', ['appcss', 'appjs'], function () {
     gulp.watch(['resources/sass/**/*.scss'], ['appcss']);
     gulp.watch(['resources/js/app.js'], ['appjs']);
 });
 
-gulp.task('default', ['appcss', 'vendorcss', 'vendorjs', 'appjs', 'watch']);
+gulp.task('default', ['appcss', 'vendorcss', 'vendorjs', 'appjs', 'vendorfonts', 'watch']);
