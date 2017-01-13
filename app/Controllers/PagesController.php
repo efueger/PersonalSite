@@ -24,6 +24,15 @@ class PagesController extends BaseController
         $publishedProjects = $projectMapper->countPublishedProjects();
         $draftProjects = $projectMapper->countDraftProjects();
 
-        return $this->view->render($response, 'admin/index.twig', compact('publishedPosts', 'draftPosts', 'publishedProjects', 'draftProjects'));
+        return $this->view->render(
+            $response,
+            'admin/index.twig',
+            compact(
+                'publishedPosts',
+                'draftPosts',
+                'publishedProjects',
+                'draftProjects'
+            )
+        );
     }
 }
