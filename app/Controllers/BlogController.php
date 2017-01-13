@@ -34,7 +34,7 @@ class BlogController extends BaseController
 
     public function new(Request $request, Response $response)
     {
-        return $this->view->render($response, 'posts/new.twig');
+        return $this->view->render($response, 'admin/blog/posts/new.twig');
     }
 
     public function store(Request $request, Response $response)
@@ -53,7 +53,7 @@ class BlogController extends BaseController
         $postMapper = new PostMapper($this->db);
         $postMapper->save($post);
 
-        return $response->withRedirect($this->router->pathFor('blog.index'));
+        return $response->withRedirect($this->router->pathFor('admin.blog.published'));
     }
 
     public function listPublished(Request $request, Response $response)

@@ -15,14 +15,9 @@ $app->get('/', PagesController::class . ':index')
  */
 $app->get('/blog', BlogController::class . ':index')
     ->setName('blog.index');
-$app->get('/blog/new', BlogController::class . ':new')
-    ->add(new AuthMiddleware($container))
-    ->setName('blog.new');
 $app->get('/blog/{slug}', BlogController::class . ':show')
     ->setName('blog.show');
-$app->post('/blog', BlogController::class . ':store')
-    ->add(new AuthMiddleware($container))
-    ->setName('blog.store');
+
 
 /**
  * Portfolio Routes
@@ -56,5 +51,11 @@ $app->get('/logout', AuthController::class . ':logout')
  */
 $app->group('/admin', function () use ($app) {
     $app->get('', '\App\Controllers\PagesController:adminIndex')->setName('admin.index');
-    $app->get('/blog/published', '\App\Controllers\BlogController:listPublished')->setName('admin.blog.published');
+
+    $app->group('/blog', function () use ($app) {
+        $app->get('/published', '\App\Controllers\BlogController:listPublished')->setName('admin.blog.published');
+        $app->get('/new', '\App\Controllers\BlogController:new')->setName('admin.blog.new');
+        $app->post('/blog', '\App\Controllers\BlogController:store')->setName('admin.blog.store');
+    });
+
 })->add(new AuthMiddleware($container));

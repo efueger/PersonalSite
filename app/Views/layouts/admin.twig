@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="/css/vendor.css">
     <link rel="stylesheet" href="/css/admin.css">
+    {% block headercss %}
+    {% endblock %}
 
 
 </head>
@@ -36,6 +38,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Posts</a></li>
                         <li><a href="#">Tags</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path_for('admin.blog.new') }}">New Post</a></li>
                     </ul>
                 <li><a href="#">Portfolio</a></li>
                 </li>
@@ -52,6 +56,8 @@
 
 <script src="/js/vendor.js"></script>
 <script src="/js/admin.js" data-turbolinks-eval=false></script>
+{% block footerjs %}
+{% endblock %}
 
 </body>
 </html>
