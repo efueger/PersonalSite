@@ -57,5 +57,4 @@ $app->group('/admin', function () use ($app) {
         $app->post('', '\App\Controllers\BlogController:store')->setName('admin.blog.store');
         $app->get('/{slug}/delete', '\App\Controllers\BlogController:destroy')->setName('admin.blog.destroy');
     });
-
 })->add(new AuthMiddleware($container));
