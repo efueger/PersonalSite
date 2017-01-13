@@ -6,7 +6,7 @@
     <div class="container pt">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h3>Create New Blog Post</h3>
+                <h3>Edit Blog Post</h3>
                 <form method="POST" action="{{ path_for('admin.blog.update', {'slug': post.slug}) }}">
                     <div class="form-group">
                         <input class="form-control" name="title" type="text" autofocus="" value="{{ post.title }}">
