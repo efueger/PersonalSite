@@ -34,7 +34,7 @@ $app->get('/portfolio/new', PortfolioController::class . ':new')
     ->setName('portfolio.new');
 $app->get('/portfolio/{slug}', PortfolioController::class . ':show')
     ->setName('portfolio.show');
-$app->post('/portfolio', PortfolioController::class. ':store')
+$app->post('/portfolio', PortfolioController::class . ':store')
     ->add(new AuthMiddleware($container))
     ->setName('portfolio.store');
 
@@ -54,6 +54,7 @@ $app->get('/logout', AuthController::class . ':logout')
 /**
  * Admin Routes
  */
-$app->get('/admin', PagesController::class. ':adminIndex')
-    ->add(new AuthMiddleware($container))
-    ->setName('admin.index');
+$app->group('/admin', function () use ($app) {
+    $app->get('', '\App\Controllers\PagesController:adminIndex')->setName('admin.index');
+    $app->get('/blog/published', '\App\Controllers\BlogController:listPublished')->setName('admin.blog.published');
+})->add(new AuthMiddleware($container));

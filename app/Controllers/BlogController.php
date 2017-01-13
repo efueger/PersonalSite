@@ -55,4 +55,12 @@ class BlogController extends BaseController
 
         return $response->withRedirect($this->router->pathFor('blog.index'));
     }
+
+    public function listPublished(Request $request, Response $response)
+    {
+        $mapper = new PostMapper($this->db);
+        $posts = $mapper->getPublishedPosts();
+
+        return $this->view->render($response, 'admin/blog/posts/published.twig', compact('posts'));
+    }
 }

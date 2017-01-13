@@ -66,4 +66,17 @@ class PostMapper extends BaseMapper
 
         return $count['total'];
     }
+
+    public function getPublishedPosts()
+    {
+        $sql = "SELECT * FROM posts WHERE published_at IS NOT NULL ORDER BY published_at DESC";
+        $stmt = $this->db->query($sql);
+
+        $posts = [];
+        while ($row = $stmt->fetch()) {
+            $posts[] = new Post($row);
+        }
+
+        return $posts;
+    }
 }
