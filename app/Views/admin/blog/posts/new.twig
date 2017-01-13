@@ -1,7 +1,4 @@
 {% extends 'layouts/admin.twig' %}
-{% block headercss %}
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
-{% endblock %}
 {% block content %}
     <div class="container pt">
         <div class="row">
@@ -27,7 +24,6 @@
     <div id="dtBox"></div>
 {% endblock %}
 {% block footerjs %}
-    <script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#dtBox").DateTimePicker();
