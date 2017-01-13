@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Portfolio\ProjectEntity;
+use App\Models\Portfolio\Project;
 use App\Models\Portfolio\ProjectMapper;
 use Cocur\Slugify\Slugify;
 use Slim\Exception\NotFoundException;
@@ -59,7 +59,7 @@ class PortfolioController extends BaseController
             'published_at' => $params['published_at'],
         ];
 
-        $project = new ProjectEntity($projectData);
+        $project = new Project($projectData);
         $projectMapper = new ProjectMapper($this->db);
         $projectMapper->save($project);
 

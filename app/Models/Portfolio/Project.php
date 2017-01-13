@@ -2,7 +2,7 @@
 
 namespace App\Models\Portfolio;
 
-class ProjectEntity
+class Project
 {
     protected $id;
     protected $title;

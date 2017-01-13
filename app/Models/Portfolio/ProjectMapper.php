@@ -13,7 +13,7 @@ class ProjectMapper extends BaseMapper
 
         $results = [];
         while ($row = $stmt->fetch()) {
-            $results[] = new ProjectEntity($row);
+            $results[] = new Project($row);
         }
 
         return $results;
@@ -27,7 +27,7 @@ class ProjectMapper extends BaseMapper
         $project = $stmt->fetch();
 
         if ($project) {
-            return new ProjectEntity($project);
+            return new Project($project);
         }
 
         return false;
