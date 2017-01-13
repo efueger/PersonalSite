@@ -36,8 +36,7 @@ class PostMapper extends BaseMapper
     public function save(Post $post)
     {
         $query = "INSERT INTO posts (title, slug, content, published_at) 
-            VALUES (:title, :slug, :content, :published_at)"
-        ;
+            VALUES (:title, :slug, :content, :published_at)";
         $stmt = $this->db->prepare($query);
         $stmt->execute([
             'title' => $post->getTitle(),
@@ -87,5 +86,17 @@ class PostMapper extends BaseMapper
         $stmt->execute(['slug' => $slug]);
 
         return true;
+    }
+
+    public function update(Post $post)
+    {
+        $query = "UPDATE posts SET title=:title, content=:content, published_at=:published_at WHERE slug = :slug";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([
+            'title' => $post->getTitle(),
+            'slug' => $post->getSlug(),
+            'content' => $post->getContent(),
+            'published_at' => $post->getPublishedAt()
+        ]);
     }
 }

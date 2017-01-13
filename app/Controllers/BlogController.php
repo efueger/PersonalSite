@@ -9,8 +9,17 @@ use Slim\Exception\NotFoundException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+/**
+ * Class BlogController
+ * @package App\Controllers
+ */
 class BlogController extends BaseController
 {
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
     public function index(Request $request, Response $response)
     {
         $mapper = new PostMapper($this->db);
@@ -19,6 +28,13 @@ class BlogController extends BaseController
         return $this->view->render($response, 'posts/index.twig', compact('posts'));
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return mixed
+     * @throws NotFoundException
+     */
     public function show(Request $request, Response $response, array $args)
     {
         $slug = (string)$args['slug'];
@@ -32,11 +48,21 @@ class BlogController extends BaseController
         return $this->view->render($response, 'posts/show.twig', ['post' => $post]);
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
     public function new(Request $request, Response $response)
     {
         return $this->view->render($response, 'admin/blog/posts/new.twig');
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function store(Request $request, Response $response)
     {
         $params = $request->getParams();
@@ -56,6 +82,11 @@ class BlogController extends BaseController
         return $response->withRedirect($this->router->pathFor('admin.blog.published'));
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
     public function listPublished(Request $request, Response $response)
     {
         $mapper = new PostMapper($this->db);
@@ -64,6 +95,12 @@ class BlogController extends BaseController
         return $this->view->render($response, 'admin/blog/posts/published.twig', compact('posts'));
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function destroy(Request $request, Response $response, array $args)
     {
         $slug = (string)$args['slug'];
@@ -71,6 +108,43 @@ class BlogController extends BaseController
         $mapper->delete($slug);
 
         $this->flash->addMessage('success', 'Post successfully deleted');
+        return $response->withRedirect($this->router->pathFor('admin.blog.published'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return mixed
+     * @throws NotFoundException
+     */
+    public function edit(Request $request, Response $response, array $args)
+    {
+        $slug = (string)$args['slug'];
+        $mapper = new PostMapper($this->db);
+        $post = $mapper->getPostBySlug($slug);
+
+        if (!$post) {
+            throw new NotFoundException($request, $response);
+        }
+
+        return $this->view->render($response, 'admin/blog/posts/edit.twig', compact('post'));
+    }
+
+    public function update(Request $request, Response $response, array $args)
+    {
+        $params = $request->getParams();
+        $slug = (string)$args['slug'];
+        $mapper = new PostMapper($this->db);
+        $post = $mapper->getPostBySlug($slug);
+
+        $post->setTitle($params['title']);
+        $post->setContent($params['content']);
+        $post->setPublishedAt($params['published_at']);
+
+        $mapper->update($post);
+
+        $this->flash->addMessage('success', 'Post Successfully Updated');
         return $response->withRedirect($this->router->pathFor('admin.blog.published'));
     }
 }

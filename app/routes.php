@@ -56,5 +56,7 @@ $app->group('/admin', function () use ($app) {
         $app->get('/new', '\App\Controllers\BlogController:new')->setName('admin.blog.new');
         $app->post('', '\App\Controllers\BlogController:store')->setName('admin.blog.store');
         $app->get('/{slug}/delete', '\App\Controllers\BlogController:destroy')->setName('admin.blog.destroy');
+        $app->get('/{slug}', '\App\Controllers\BlogController:edit')->setName('admin.blog.edit');
+        $app->post('/{slug}', '\App\Controllers\BlogController:update')->setName('admin.blog.update');
     });
 })->add(new AuthMiddleware($container));
