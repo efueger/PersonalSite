@@ -51,4 +51,24 @@ class ProjectMapper extends BaseMapper
             'published_at' => $project->getPublishedAt()
         ]);
     }
+
+    public function countPublishedProjects()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM projects WHERE published_at IS NOT NULL LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetch();
+
+        return $count['total'];
+    }
+
+    public function countDraftProjects()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM projects WHERE published_at IS NULL LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetch();
+
+        return $count['total'];
+    }
 }

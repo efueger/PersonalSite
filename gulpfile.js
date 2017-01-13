@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('appcss', function () {
     return gulp
-        .src('resources/sass/**/*.scss')
+        .src('resources/sass/*.scss')
         .pipe(sass())
         .pipe(clean())
         .pipe(gulp.dest('public/css'));
@@ -30,7 +30,7 @@ gulp.task('vendorjs', function () {
 
 gulp.task('appjs', function () {
     return gulp
-        .src('resources/js/app.js')
+        .src('resources/js/**/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('public/js'))
 });
@@ -42,8 +42,8 @@ gulp.task('vendorfonts', function () {
 });
 
 gulp.task('watch', ['appcss', 'appjs'], function () {
-    gulp.watch(['resources/sass/**/*.scss'], ['appcss']);
-    gulp.watch(['resources/js/app.js'], ['appjs']);
+    gulp.watch(['resources/sass/*.scss'], ['appcss']);
+    gulp.watch(['resources/js/*.js'], ['appjs']);
 });
 
 gulp.task('default', ['appcss', 'vendorcss', 'vendorjs', 'appjs', 'vendorfonts', 'watch']);

@@ -46,4 +46,24 @@ class PostMapper extends BaseMapper
             'published_at' => $post->getPublishedAt()
         ]);
     }
+
+    public function countPublishedPosts()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM posts WHERE published_at IS NOT NULL LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetch();
+
+        return $count['total'];
+    }
+
+    public function countDraftPosts()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM posts WHERE published_at IS NULL LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetch();
+
+        return $count['total'];
+    }
 }

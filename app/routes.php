@@ -50,3 +50,10 @@ $app->post('/login', AuthController::class . ':postLogin')
 $app->get('/logout', AuthController::class . ':logout')
     ->add(new AuthMiddleware($container))
     ->setName('auth.logout');
+
+/**
+ * Admin Routes
+ */
+$app->get('/admin', PagesController::class. ':adminIndex')
+    ->add(new AuthMiddleware($container))
+    ->setName('admin.index');
