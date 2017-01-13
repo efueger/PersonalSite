@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Blog\PostEntity;
+use App\Models\Blog\Post;
 use App\Models\Blog\PostMapper;
 use Cocur\Slugify\Slugify;
 use Slim\Exception\NotFoundException;
@@ -49,7 +49,7 @@ class BlogController extends BaseController
             'published_at' => $params['published_at'],
         ];
 
-        $post = new PostEntity($postData);
+        $post = new Post($postData);
         $postMapper = new PostMapper($this->db);
         $postMapper->save($post);
 

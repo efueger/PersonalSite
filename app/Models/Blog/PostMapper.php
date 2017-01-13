@@ -13,7 +13,7 @@ class PostMapper extends BaseMapper
 
         $results = [];
         while ($row = $stmt->fetch()) {
-            $results[] = new PostEntity($row);
+            $results[] = new Post($row);
         }
 
         return $results;
@@ -27,13 +27,13 @@ class PostMapper extends BaseMapper
         $post = $stmt->fetch();
 
         if ($post) {
-            return new PostEntity($post);
+            return new Post($post);
         }
 
         return false;
     }
 
-    public function save(PostEntity $post)
+    public function save(Post $post)
     {
         $query = "INSERT INTO posts (title, slug, content, published_at) 
             VALUES (:title, :slug, :content, :published_at)"

@@ -2,7 +2,7 @@
 
 namespace App\Models\Blog;
 
-class PostEntity
+class Post
 {
     protected $id;
     protected $title;
