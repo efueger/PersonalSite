@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <bd>{{ post.published_at|date("l F jS, Y") }}</bd>
+                        <bd>{{ post.publishedAt|date("l F jS, Y") }}</bd>
                         <h4>{{ post.title }}</h4>
                         <p>{{ post.content|markdown|striptags|truncate(250, true) }}</p>
                         <a href="{{ path_for('blog.show', {'slug': post.slug}) }}" data-turbolinks="false">Continue Reading...</a>
