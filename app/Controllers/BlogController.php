@@ -68,11 +68,16 @@ class BlogController extends BaseController
         $params = $request->getParams();
         $slugify = new Slugify();
         $slug = $slugify->slugify($params['title']);
+        $date = $params['published_at'];
+        if (empty($date)) {
+            $date = null;
+        }
+
         $postData = [
             'title' => $params['title'],
             'slug' => $slug,
             'content' => $params['content'],
-            'published_at' => $params['published_at'],
+            'published_at' => $date,
         ];
 
         $post = new Post($postData);
@@ -93,6 +98,14 @@ class BlogController extends BaseController
         $posts = $mapper->getPublishedPosts();
 
         return $this->view->render($response, 'admin/blog/posts/published.twig', compact('posts'));
+    }
+
+    public function listDraft(Request $request, Response $response)
+    {
+        $mapper = new PostMapper($this->db);
+        $posts = $mapper->getDraftPosts();
+
+        return $this->view->render($response, 'admin/blog/posts/draft.twig', compact('posts'));
     }
 
     /**
@@ -137,10 +150,14 @@ class BlogController extends BaseController
         $slug = (string)$args['slug'];
         $mapper = new PostMapper($this->db);
         $post = $mapper->getPostBySlug($slug);
+        $date = $params['published_at'];
+        if (empty($date)) {
+            $date = null;
+        }
 
         $post->setTitle($params['title']);
         $post->setContent($params['content']);
-        $post->setPublishedAt($params['published_at']);
+        $post->setPublishedAt($date);
 
         $mapper->update($post);
 

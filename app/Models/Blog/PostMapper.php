@@ -79,6 +79,19 @@ class PostMapper extends BaseMapper
         return $posts;
     }
 
+    public function getDraftPosts()
+    {
+        $sql = "SELECT * FROM posts WHERE published_at IS NULL";
+        $stmt = $this->db->query($sql);
+
+        $posts = [];
+        while ($row = $stmt->fetch()) {
+            $posts[] = new Post($row);
+        }
+
+        return $posts;
+    }
+
     public function delete($slug)
     {
         $sql = "DELETE FROM posts WHERE slug = :slug";

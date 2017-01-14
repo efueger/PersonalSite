@@ -53,6 +53,7 @@ $app->group('/admin', function () use ($app) {
 
     $app->group('/blog', function () use ($app) {
         $app->get('/published', '\App\Controllers\BlogController:listPublished')->setName('admin.blog.published');
+        $app->get('/draft', '\App\Controllers\BlogController:listDraft')->setName('admin.blog.draft');
         $app->get('/new', '\App\Controllers\BlogController:new')->setName('admin.blog.new');
         $app->post('', '\App\Controllers\BlogController:store')->setName('admin.blog.store');
         $app->get('/{slug}/delete', '\App\Controllers\BlogController:destroy')->setName('admin.blog.destroy');
