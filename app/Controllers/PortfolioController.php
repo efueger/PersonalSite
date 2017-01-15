@@ -65,4 +65,12 @@ class PortfolioController extends BaseController
 
         return $response->withRedirect($this->router->pathFor('portfolio.index'));
     }
+
+    public function listPublished(Request $request, Response $response)
+    {
+        $mapper = new ProjectMapper($this->db);
+        $projects = $mapper->getPublishedProjects();
+
+        return $this->view->render($response, 'admin/portfolio/projects/published.twig', compact('projects'));
+    }
 }

@@ -60,4 +60,9 @@ $app->group('/admin', function () use ($app) {
         $app->get('/{slug}', '\App\Controllers\BlogController:edit')->setName('admin.blog.edit');
         $app->post('/{slug}', '\App\Controllers\BlogController:update')->setName('admin.blog.update');
     });
+
+    $app->group('/portfolio', function () use ($app) {
+        $app->get('published', '\App\Controllers\PortfolioController:listPublished')
+            ->setName('admin.portfolio.published');
+    });
 })->add(new AuthMiddleware($container));

@@ -71,4 +71,17 @@ class ProjectMapper extends BaseMapper
 
         return $count['total'];
     }
+
+    public function getPublishedProjects()
+    {
+        $sql = "SELECT * FROM projects WHERE published_at IS NOT NULL ORDER BY published_at DESC";
+        $stmt = $this->db->query($sql);
+
+        $projects = [];
+        while ($row = $stmt->fetch()) {
+            $projects[] = new Project($row);
+        }
+
+        return $projects;
+    }
 }
