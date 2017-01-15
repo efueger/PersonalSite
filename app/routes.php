@@ -62,7 +62,8 @@ $app->group('/admin', function () use ($app) {
     });
 
     $app->group('/portfolio', function () use ($app) {
-        $app->get('published', '\App\Controllers\PortfolioController:listPublished')
+        $app->get('/published', '\App\Controllers\PortfolioController:listPublished')
             ->setName('admin.portfolio.published');
+        $app->get('/draft', '\App\Controllers\PortfolioController:listDraft')->setName('admin.portfolio.draft');
     });
 })->add(new AuthMiddleware($container));

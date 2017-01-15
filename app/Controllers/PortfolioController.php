@@ -73,4 +73,12 @@ class PortfolioController extends BaseController
 
         return $this->view->render($response, 'admin/portfolio/projects/published.twig', compact('projects'));
     }
+
+    public function listDraft(Request $request, Response $response)
+    {
+        $mapper = new ProjectMapper($this->db);
+        $projects = $mapper->getDraftProjects();
+
+        return $this->view->render($response, 'admin/portfolio/projects/draft.twig', compact('projects'));
+    }
 }
