@@ -36,8 +36,74 @@ class PostMapper extends BaseMapper
     public function save(Post $post)
     {
         $query = "INSERT INTO posts (title, slug, content, published_at) 
-            VALUES (:title, :slug, :content, :published_at)"
-        ;
+            VALUES (:title, :slug, :content, :published_at)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([
+            'title' => $post->getTitle(),
+            'slug' => $post->getSlug(),
+            'content' => $post->getContent(),
+            'published_at' => $post->getPublishedAt()
+        ]);
+    }
+
+    public function countPublishedPosts()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM posts WHERE published_at IS NOT NULL LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetch();
+
+        return $count['total'];
+    }
+
+    public function countDraftPosts()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM posts WHERE published_at IS NULL LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetch();
+
+        return $count['total'];
+    }
+
+    public function getPublishedPosts()
+    {
+        $sql = "SELECT * FROM posts WHERE published_at IS NOT NULL ORDER BY published_at DESC";
+        $stmt = $this->db->query($sql);
+
+        $posts = [];
+        while ($row = $stmt->fetch()) {
+            $posts[] = new Post($row);
+        }
+
+        return $posts;
+    }
+
+    public function getDraftPosts()
+    {
+        $sql = "SELECT * FROM posts WHERE published_at IS NULL";
+        $stmt = $this->db->query($sql);
+
+        $posts = [];
+        while ($row = $stmt->fetch()) {
+            $posts[] = new Post($row);
+        }
+
+        return $posts;
+    }
+
+    public function delete($slug)
+    {
+        $sql = "DELETE FROM posts WHERE slug = :slug";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['slug' => $slug]);
+
+        return true;
+    }
+
+    public function update(Post $post)
+    {
+        $query = "UPDATE posts SET title=:title, content=:content, published_at=:published_at WHERE slug = :slug";
         $stmt = $this->db->prepare($query);
         $stmt->execute([
             'title' => $post->getTitle(),

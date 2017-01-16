@@ -1,4 +1,4 @@
-{% extends 'layout.twig' %}
+{% extends 'layouts/admin.twig' %}
 {% block headercss %}
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
 {% endblock %}
@@ -6,19 +6,19 @@
     <div class="container pt">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h3>Create New Blog Post</h3>
-                <form method="POST" action="{{ path_for('blog.store') }}">
+                <h3>Edit Blog Post</h3>
+                <form method="POST" action="{{ path_for('admin.blog.update', {'slug': post.slug}) }}">
                     <div class="form-group">
-                        <input class="form-control" placeholder="Title" name="title" type="text" autofocus="">
+                        <input class="form-control" name="title" type="text" autofocus="" value="{{ post.title }}">
                     </div>
                     <div class="form-group">
-                        <textarea name="content" rows="20" class="form-control" placeholder="Content"></textarea>
+                        <textarea name="content" rows="20" class="form-control">{{ post.content }}</textarea>
                     </div>
                     <div class="form-group">
-                        <input type="text"  name="published_at" data-field="datetime" class="form-control" readonly placeholder="Publish At" data-format="yyyy-MM-dd hh:mm:ss">
+                        <input type="text"  name="published_at" data-field="datetime" class="form-control" readonly data-format="yyyy-MM-dd hh:mm:ss" value="{{ post.publishedAt }}">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success">Save Post</button>
+                        <button class="btn btn-success">Upate Post</button>
                     </div>
                 </form>
             </div>

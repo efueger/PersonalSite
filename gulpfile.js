@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('appcss', function () {
     return gulp
-        .src('resources/sass/**/*.scss')
+        .src('resources/sass/*.scss')
         .pipe(sass())
         .pipe(clean())
         .pipe(gulp.dest('public/css'));
@@ -14,7 +14,7 @@ gulp.task('appcss', function () {
 
 gulp.task('vendorcss', function () {
     return gulp
-        .src(['node_modules/bootstrap/dist/css/bootstrap.css'])
+        .src(['node_modules/bootstrap/dist/css/bootstrap.css', 'node_modules/font-awesome/css/font-awesome.css', 'node_modules/datetimepicker/dist/DateTimePicker.css'])
         .pipe(concat('vendor.css'))
         .pipe(clean())
         .pipe(gulp.dest('public/css'));
@@ -22,7 +22,7 @@ gulp.task('vendorcss', function () {
 
 gulp.task('vendorjs', function () {
     return gulp
-        .src(['node_modules/jquery/dist/jquery.js', 'node_modules/bootstrap/dist/js/bootstrap.js', 'node_modules/turbolinks/dist/turbolinks.js'])
+        .src(['node_modules/jquery/dist/jquery.js', 'node_modules/bootstrap/dist/js/bootstrap.js', 'node_modules/turbolinks/dist/turbolinks.js', 'node_modules/datetimepicker/dist/DateTimePicker.js'])
         .pipe(concat('vendor.js'))
         .pipe(uglify())
         .pipe(gulp.dest('public/js'));
@@ -30,14 +30,20 @@ gulp.task('vendorjs', function () {
 
 gulp.task('appjs', function () {
     return gulp
-        .src('resources/js/app.js')
+        .src('resources/js/**/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('public/js'))
 });
 
-gulp.task('watch', ['appcss', 'appjs'], function () {
-    gulp.watch(['resources/sass/**/*.scss'], ['appcss']);
-    gulp.watch(['resources/js/app.js'], ['appjs']);
+gulp.task('vendorfonts', function () {
+    return gulp
+        .src(['node_modules/font-awesome/fonts/*', 'node_modules/bootstrap/dist/fonts/*'])
+        .pipe(gulp.dest('public/fonts'));
 });
 
-gulp.task('default', ['appcss', 'vendorcss', 'vendorjs', 'appjs', 'watch']);
+gulp.task('watch', ['appcss', 'appjs'], function () {
+    gulp.watch(['resources/sass/*.scss'], ['appcss']);
+    gulp.watch(['resources/js/*.js'], ['appjs']);
+});
+
+gulp.task('default', ['appcss', 'vendorcss', 'vendorjs', 'appjs', 'vendorfonts', 'watch']);
