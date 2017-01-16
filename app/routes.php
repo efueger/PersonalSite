@@ -28,9 +28,6 @@ $app->get('/portfolio/new', PortfolioController::class . ':new')
     ->setName('portfolio.new');
 $app->get('/portfolio/{slug}', PortfolioController::class . ':show')
     ->setName('portfolio.show');
-$app->post('/portfolio', PortfolioController::class . ':store')
-    ->add(new AuthMiddleware($container))
-    ->setName('portfolio.store');
 
 /**
  * Auth Routes
@@ -65,5 +62,7 @@ $app->group('/admin', function () use ($app) {
         $app->get('/published', '\App\Controllers\PortfolioController:listPublished')
             ->setName('admin.portfolio.published');
         $app->get('/draft', '\App\Controllers\PortfolioController:listDraft')->setName('admin.portfolio.draft');
+        $app->get('/new', '\App\Controllers\PortfolioController:new')->setName('admin.portfolio.new');
+        $app->post('', '\App\Controllers\PortfolioController:store')->setName('admin.portfolio.store');
     });
 })->add(new AuthMiddleware($container));

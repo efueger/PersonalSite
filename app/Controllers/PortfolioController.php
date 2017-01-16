@@ -34,7 +34,7 @@ class PortfolioController extends BaseController
 
     public function new(Request $request, Response $response)
     {
-        return $this->view->render($response, 'projects/new.twig');
+        return $this->view->render($response, 'admin/portfolio/projects/new.twig');
     }
 
     public function store(Request $request, Response $response)
@@ -44,7 +44,7 @@ class PortfolioController extends BaseController
         $files = $request->getUploadedFiles();
         $previewImage = $files['preview'];
         $previewImageFileName = $previewImage->getClientFilename();
-        $previewImage->moveTo(__DIR__ . "/../public/img/projects/{$previewImageFileName}");
+        $previewImage->moveTo(__DIR__ . "/../../public/img/projects/{$previewImageFileName}");
 
         $slugify = new Slugify();
         $slug = $slugify->slugify($params['title']);
