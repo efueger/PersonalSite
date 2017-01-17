@@ -26,7 +26,7 @@ class PostSeeder extends AbstractSeed
                 'title' => 'Test Post 3',
                 'slug' => 'test-post-3',
                 'content' => $faker->paragraphs($nb = 3, $asText = true),
-                'published_at' => '2017-01-12 23:12:21'
+                'published_at' => $faker->date($format = 'Y-m-d', $max = 'now')
             ],
             [
                 'title' => $faker->sentence(),
