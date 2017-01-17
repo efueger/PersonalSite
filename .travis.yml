@@ -1,32 +1,28 @@
 sudo: false
-
 language: php
-
 php:
-  - 7.1
-
+- 7.1
 env:
   global:
-    - DB_HOST=127.0.0.1
-    - DB_NAME=personalsite_test
-    - DB_USER=root
-    - DB_PASS=
-    - DB_PORT=3306
-    - DB_DRIVER=mysql
-
+  - DB_HOST=127.0.0.1
+  - DB_NAME=personalsite_test
+  - DB_USER=root
+  - DB_PASS=
+  - DB_PORT=3306
+  - DB_DRIVER=mysql
 addons:
   code_climate:
     repo_token: c948b58b439f0ab5cf9c7143862a79032443d12d5d56ce2008aa7065ff65cd27
-
 before_script:
-  - composer install
-  - mysql -e 'CREATE DATABASE personalsite_test;'
-  - php bin/console db:migrate
-  - php bin/console seed:run
-
+- composer install
+- mysql -e 'CREATE DATABASE personalsite_test;'
+- php bin/console db:migrate
+- php bin/console seed:run
 script:
-  - vendor/bin/phpunit
-  - vendor/bin/phpcs
-
+- vendor/bin/phpunit
+- vendor/bin/phpcs
 after_success:
-  - vendor/bin/test-reporter
+- vendor/bin/test-reporter
+notifications:
+  slack:
+    secure: BkTdIAkknV9NktZlBwzezDg1iDl9RNvT89QT40VAWNNfxqd8tP9NWbRdJJA5+pdyt7SRvmiTIko5J9zAc6DmE4UgYZjo7qtekbedz0yWNnw/0I3ZEIvP1Fp+KZxcGtjEjfx4vkL6aPHA83TvPYAUtT+QS8DblJV3dxpBc2MeeMyhnpFpqbrv3KfMrG1I0iA7xbhJNnut9QLFN6DrZc5oijaqIB0a7g38u8HH4QYk15iSNtAOlHCl4vQ+2Jm9I2KY56/swntZjYwb0E5B2j4HORTC+zop8Kh7qvXF+R9pWneHOT0eHl0aRc69JgqHviIjHvEGzV402YYPHRBTYOOHDK+5CXq3j13DgFk/iMg13OAPXeC3www0/I5ioM/gXlrSoZmHmBJqq8hicvYbsiCs/LJDC8RKOaFKkFKclaooJR4KvPSQVomMBU75HlF/ouFma4Bp+UWP3ZpMzBILKAhcEuL0pPSClNbDa5wEOo5nlMeI4gbM+hDN41BhfcqscojLodis0WsVu3AECu8Zk16imocm1ePgQ56o9AJqZ9bCa07uSR6EJaDwdkrNHzA9bwCq89KIhFSJzL6kKFkIpTOlTaK1655RBIGGN7+t69aQ90NAK7wTOQu1H85+saDe7oumwoY6zvasGdZCtdVkyfjhp5iAHkxGL7ATJYn6eLykvZM=
