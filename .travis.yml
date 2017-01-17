@@ -23,3 +23,7 @@ before_script:
 script:
   - vendor/bin/phpunit
   - vendor/bin/phpcs
+
+addons:
+  code_climate:
+    repo_token: c948b58b439f0ab5cf9c7143862a79032443d12d5d56ce2008aa7065ff65cd27
