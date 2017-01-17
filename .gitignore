@@ -7,3 +7,4 @@
 /cache
 /public/img/projects
 !/public/img/projects/.gitkeep
+/build
