@@ -32,3 +32,5 @@ ratings:
 exclude_paths:
 - db/
 - tests/
+- public/css/vendor.css
+- public/js/vendor.js
