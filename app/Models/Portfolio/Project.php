@@ -29,11 +29,10 @@ class Project
         $this->github_url = $data['github_url'];
         $this->technologies = $data['technologies'];
         $this->preview = $data['preview'];
+        $this->published = true;
 
-        if ($this->published_at == null || $this->published_at > date("Y-m-d H:i:s", time())) {
+        if (is_null($this->published_at) || $this->published_at > date("Y-m-d H:i:s", time())) {
             $this->published = false;
-        } else {
-            $this->published = true;
         }
     }
 
