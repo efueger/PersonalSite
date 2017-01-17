@@ -14,6 +14,10 @@ env:
     - DB_PORT=3306
     - DB_DRIVER=mysql
 
+addons:
+  code_climate:
+    repo_token: c948b58b439f0ab5cf9c7143862a79032443d12d5d56ce2008aa7065ff65cd27
+
 before_script:
   - composer install
   - mysql -e 'CREATE DATABASE personalsite_test;'
@@ -24,6 +28,5 @@ script:
   - vendor/bin/phpunit
   - vendor/bin/phpcs
 
-addons:
-  code_climate:
-    repo_token: c948b58b439f0ab5cf9c7143862a79032443d12d5d56ce2008aa7065ff65cd27
+after_script:
+  vendor/bin/test-reporter
