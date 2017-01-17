@@ -16,6 +16,8 @@ engines:
     enabled: true
   phpmd:
     enabled: true
+    config:
+      rulesets: "naming"
 ratings:
   paths:
   - "**.css"
