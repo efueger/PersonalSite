@@ -31,7 +31,7 @@ class Post
     /**
      * @var mixed
      */
-    protected $published_at;
+    protected $publishedAt;
 
     /**
      * Accept an array of data matching properties of this class
@@ -50,11 +50,10 @@ class Post
         $this->slug = $data['slug'];
         $this->content = $data['content'];
         $this->published_at = $data['published_at'];
+        $this->published = true;
 
-        if ($this->published_at == null || $this->published_at > date("Y-m-d H:i:s", time())) {
+        if ($this->publishedAt == null || $this->publishedAt > date("Y-m-d H:i:s", time())) {
             $this->published = false;
-        } else {
-            $this->published = true;
         }
     }
 
@@ -103,7 +102,7 @@ class Post
      */
     public function getPublishedAt()
     {
-        return $this->published_at;
+        return $this->publishedAt;
     }
 
     /**
@@ -127,6 +126,6 @@ class Post
      */
     public function setPublishedAt($publishedAt)
     {
-        $this->published_at = $publishedAt;
+        $this->publishedAt = $publishedAt;
     }
 }
