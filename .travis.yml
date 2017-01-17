@@ -28,5 +28,5 @@ script:
   - vendor/bin/phpunit
   - vendor/bin/phpcs
 
-after_script:
-  vendor/bin/test-reporter
+after_success:
+  - vendor/bin/test-reporter
