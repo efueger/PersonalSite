@@ -8,10 +8,10 @@ class Project
     protected $title;
     protected $slug;
     protected $description;
-    protected $published_at;
+    protected $publishedAt;
     protected $published;
-    protected $live_url;
-    protected $github_url;
+    protected $liveUrl;
+    protected $githubUrl;
     protected $technologies;
     protected $preview;
 
@@ -24,14 +24,14 @@ class Project
         $this->title = $data['title'];
         $this->slug = $data['slug'];
         $this->description = $data['description'];
-        $this->published_at = $data['published_at'];
-        $this->live_url = $data['live_url'];
-        $this->github_url = $data['github_url'];
+        $this->publishedAt = $data['published_at'];
+        $this->liveUrl = $data['live_url'];
+        $this->githubUrl = $data['github_url'];
         $this->technologies = $data['technologies'];
         $this->preview = $data['preview'];
         $this->published = true;
 
-        if (is_null($this->published_at) || $this->published_at > date("Y-m-d H:i:s", time())) {
+        if (is_null($this->publishedAt) || $this->publishedAt > date("Y-m-d H:i:s", time())) {
             $this->published = false;
         }
     }
@@ -63,17 +63,17 @@ class Project
 
     public function getPublishedAt()
     {
-        return $this->published_at;
+        return $this->publishedAt;
     }
 
     public function getLiveUrl()
     {
-        return $this->live_url;
+        return $this->liveUrl;
     }
 
     public function getGithubUrl()
     {
-        return $this->github_url;
+        return $this->githubUrl;
     }
 
     public function getTechnologies()
