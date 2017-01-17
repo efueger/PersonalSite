@@ -16,9 +16,6 @@ engines:
     enabled: true
   phpmd:
     enabled: true
-    config:
-      file_extensions: "php"
-      rulesets: "cleancode,controversial,design,codesize,unusedcode,phpmd.xml"
 ratings:
   paths:
   - "**.css"
