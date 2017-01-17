@@ -1,4 +1,4 @@
-[ ![Codeship Status for railto/PersonalSite](https://app.codeship.com/projects/fae36c30-b491-0134-45bc-4ef77e5b4898/status?branch=master)](https://app.codeship.com/projects/193761)
+[![Build Status](https://travis-ci.org/railto/PersonalSite.svg?branch=master)](https://travis-ci.org/railto/PersonalSite)
 [![Code Climate](https://codeclimate.com/github/railto/PersonalSite/badges/gpa.svg)](https://codeclimate.com/github/railto/PersonalSite)
 
 This repo holds the source code for the application that runs my personal site at https://markrailton.com
