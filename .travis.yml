@@ -11,7 +11,7 @@ env:
   global:
   - DB_HOST=127.0.0.1
   - DB_NAME=personalsite_test
-  - DB_USER=root
+  - DB_USER=travis
   - DB_PASS=
   - DB_PORT=3306
   - DB_DRIVER=mysql
