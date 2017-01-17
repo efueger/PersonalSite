@@ -15,15 +15,17 @@ env:
   - DB_DRIVER=mysql
 
 before_script:
-- composer install
-- mysql -e 'CREATE DATABASE personalsite_test;'
-- php bin/console db:migrate
-- php bin/console seed:run
+  - composer install
+  - mysql -e 'CREATE DATABASE personalsite_test;'
+  - php bin/console db:migrate
+  - php bin/console seed:run
 
 script:
-- vendor/bin/phpunit
-- vendor/bin/phpcs
-- vendor/bin/test-reporter
+  - vendor/bin/phpunit
+  - vendor/bin/phpcs
+
+after_success:
+  - vendor/bin/test-reporter
 
 notifications:
   slack:
