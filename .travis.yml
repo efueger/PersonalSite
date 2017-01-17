@@ -18,7 +18,7 @@ before_script:
   - composer install
   - mysql -e 'CREATE DATABASE personalsite_test;'
   - php bin/console db:migrate
-  - mysql -u root personalsite_test < tests/personalsite_test_2017-01-17.sql
+  - php bin/console seed:run
 
 script:
   - vendor/bin/phpunit
