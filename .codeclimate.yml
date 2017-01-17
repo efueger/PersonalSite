@@ -17,7 +17,8 @@ engines:
   phpmd:
     enabled: true
     config:
-      rulesets: "naming"
+      file_extensions: "php"
+      rulesets: "phpmd.xml"
 ratings:
   paths:
   - "**.css"
