@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.1.20-MariaDB)
 # Database: personalsite_test
-# Generation Time: 2017-01-17 18:42:50 +0000
+# Generation Time: 2017-01-17 18:46:43 +0000
 # ************************************************************
 
 
@@ -18,23 +18,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
-# Dump of table phinxlog
-# ------------------------------------------------------------
-
-LOCK TABLES `phinxlog` WRITE;
-/*!40000 ALTER TABLE `phinxlog` DISABLE KEYS */;
-
-INSERT INTO `phinxlog` (`version`, `migration_name`, `start_time`, `end_time`, `breakpoint`)
-VALUES
-	(20161230192551,'CreatePostsTable','2016-12-30 19:37:12','2016-12-30 19:37:12',0),
-	(20161230210456,'RenamePostsPublishedColumn','2016-12-30 21:05:49','2016-12-30 21:05:49',0),
-	(20161230232847,'CreateProjectsTable','2016-12-31 00:19:10','2016-12-31 00:19:10',0),
-	(20161231180135,'CreateUsersTable','2016-12-31 18:02:52','2016-12-31 18:02:52',0);
-
-/*!40000 ALTER TABLE `phinxlog` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table posts
