@@ -2,7 +2,7 @@
 {% block content %}
     <div class="container pt">
         <div class="col-lg-12">
-            {% for project in projects %}
+            {% for project in projects if project.published %}
                 <div class="col-md-4 portfolio-index-item">
                     <a href="{{ path_for('portfolio.show', {'slug': project.slug}) }}">
                         <img class="img-responsive project-preview-img" src="/img/projects/{{ project.preview }}">
