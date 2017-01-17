@@ -1,7 +1,9 @@
 <?php
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();
+if (is_file(__DIR__ . '/.env')) {
+    $dotenv = new Dotenv\Dotenv(__DIR__);
+    $dotenv->load();
+}
 
 return [
     'paths' => [
