@@ -20,5 +20,5 @@ before_script:
   - php bin/console db:migrate
 
 script:
-  - phpunit
-  - phpcs
+  - vendor/bin/phpunit
+  - vendor/bin/phpcs
