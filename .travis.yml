@@ -1,7 +1,12 @@
 sudo: false
+
+dist: trusty
+
 language: php
+
 php:
 - 7.1
+
 env:
   global:
   - DB_HOST=127.0.0.1
@@ -10,19 +15,24 @@ env:
   - DB_PASS=
   - DB_PORT=3306
   - DB_DRIVER=mysql
-addons:
-  code_climate:
-    repo_token: c948b58b439f0ab5cf9c7143862a79032443d12d5d56ce2008aa7065ff65cd27
+
 before_script:
 - composer install
 - mysql -e 'CREATE DATABASE personalsite_test;'
 - php bin/console db:migrate
 - php bin/console seed:run
+
 script:
 - vendor/bin/phpunit
 - vendor/bin/phpcs
-after_success:
-- vendor/bin/test-reporter
+- sonar-scanner
+
+
 notifications:
   slack:
     secure: BkTdIAkknV9NktZlBwzezDg1iDl9RNvT89QT40VAWNNfxqd8tP9NWbRdJJA5+pdyt7SRvmiTIko5J9zAc6DmE4UgYZjo7qtekbedz0yWNnw/0I3ZEIvP1Fp+KZxcGtjEjfx4vkL6aPHA83TvPYAUtT+QS8DblJV3dxpBc2MeeMyhnpFpqbrv3KfMrG1I0iA7xbhJNnut9QLFN6DrZc5oijaqIB0a7g38u8HH4QYk15iSNtAOlHCl4vQ+2Jm9I2KY56/swntZjYwb0E5B2j4HORTC+zop8Kh7qvXF+R9pWneHOT0eHl0aRc69JgqHviIjHvEGzV402YYPHRBTYOOHDK+5CXq3j13DgFk/iMg13OAPXeC3www0/I5ioM/gXlrSoZmHmBJqq8hicvYbsiCs/LJDC8RKOaFKkFKclaooJR4KvPSQVomMBU75HlF/ouFma4Bp+UWP3ZpMzBILKAhcEuL0pPSClNbDa5wEOo5nlMeI4gbM+hDN41BhfcqscojLodis0WsVu3AECu8Zk16imocm1ePgQ56o9AJqZ9bCa07uSR6EJaDwdkrNHzA9bwCq89KIhFSJzL6kKFkIpTOlTaK1655RBIGGN7+t69aQ90NAK7wTOQu1H85+saDe7oumwoY6zvasGdZCtdVkyfjhp5iAHkxGL7ATJYn6eLykvZM=
+
+addons:
+  sonarqube:
+    token:
+      secure: MIexLJZHeLBZMRbzDWK21ws0iZqvmHpgHt9dirQvOCs362yjpCIdeZE+93P8lO6Aw4qTwq/qG3SODvZLUFgVKQ9nxHtX6lQmNyNYGgnDsBeCEVNabktRlvRpkhCqk4FApnZ+hkqZGo6+fSW5TN4lpj0j0kC3EUrW2czQpvVjgEov6IWyEml0ISaPhSlMP7+wM64/1wiJOgiYo9LfVSQpqupWpTDhBFisRsb+2iisaDYSrlXxXFdUdtrWUkIjcsKb+Df6dfg1M2y3gxzJs+3PsEOhGV45gy7pwTiT0JMCMaoLwJ56L6QJoASlT7XXcGzu8uVvR/5o0QATaFj0+r8o8c2wIP6bE1byM3G75hLv6sToR1yp9YABmz/sR7Nzu0jNQZJqKQ2+YiCodaQJSV0DAx/ZwAAllpSAiePWa16qRCP9VAEvI7793kB/oz0DuJhGKETbOKwqE2nxsSQaP28yuVu+5scyqOyIj2Ovz5WLj+No3MbCys0skHLY5s13rW11TpRtl2CzQPLSS3Xor5KNmr9sggKS9eQ+Jk48FmRC221J23fwk9KDfG49x4r73YRc0k9ilDwhubPdpq3B9gytZudkM+686q7QpVmVJUZJbrB76A/vV+0JIOyQ31e5cPCDshIp0bfsV2n/Zfabp6iFz/sUkWVrSBG+ZiV3K85dwyk=
