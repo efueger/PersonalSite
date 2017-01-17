@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: localhost (MySQL 5.5.5-10.1.19-MariaDB)
-# Database: blog_test
-# Generation Time: 2017-01-04 11:17:59 +0000
+# Host: 127.0.0.1 (MySQL 5.5.5-10.1.20-MariaDB)
+# Database: personalsite_test
+# Generation Time: 2017-01-17 18:42:50 +0000
 # ************************************************************
 
 
@@ -22,17 +22,6 @@
 
 # Dump of table phinxlog
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `phinxlog`;
-
-CREATE TABLE `phinxlog` (
-  `version` bigint(20) NOT NULL,
-  `migration_name` varchar(100) DEFAULT NULL,
-  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `breakpoint` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `phinxlog` WRITE;
 /*!40000 ALTER TABLE `phinxlog` DISABLE KEYS */;
@@ -51,18 +40,6 @@ UNLOCK TABLES;
 # Dump of table posts
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `posts`;
-
-CREATE TABLE `posts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
-  `slug` varchar(200) NOT NULL,
-  `content` text NOT NULL,
-  `published_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 
@@ -78,22 +55,6 @@ UNLOCK TABLES;
 
 # Dump of table projects
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `projects`;
-
-CREATE TABLE `projects` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `live_url` varchar(255) DEFAULT NULL,
-  `github_url` varchar(255) DEFAULT NULL,
-  `technologies` varchar(255) DEFAULT NULL,
-  `published_at` datetime DEFAULT NULL,
-  `preview` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
@@ -112,16 +73,6 @@ UNLOCK TABLES;
 
 # Dump of table users
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
