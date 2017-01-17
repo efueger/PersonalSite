@@ -17,4 +17,10 @@ class BlogTest extends BaseTestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertContains('Test Post', (string)$response->getBody());
     }
+
+    public function testInvalidSlugThrows404()
+    {
+        $response = $this->runApp('GET', '/blog/invalid-slug');
+        $this->assertEquals(404, $response->getStatusCode());
+    }
 }
