@@ -6,9 +6,6 @@ engines:
     enabled: true
     config:
       languages:
-      - ruby
-      - javascript
-      - python
       - php
   eslint:
     enabled: true
