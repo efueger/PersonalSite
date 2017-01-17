@@ -49,7 +49,7 @@ class Post
         $this->title = $data['title'];
         $this->slug = $data['slug'];
         $this->content = $data['content'];
-        $this->published_at = $data['published_at'];
+        $this->publishedAt = $data['published_at'];
         $this->published = true;
 
         if ($this->publishedAt == null || $this->publishedAt > date("Y-m-d H:i:s", time())) {
