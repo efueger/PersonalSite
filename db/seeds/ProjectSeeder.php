@@ -29,7 +29,7 @@ class ProjectSeeder extends AbstractSeed
             [
                 'title' => 'We Are Social',
                 'slug' => 'we-are-social',
-                'description' => 'Final Project',
+                'description' => 'Final project',
                 'live_url' => $faker->url,
                 'github_url' => $faker->url,
                 'technologies' => $faker->sentence(),
