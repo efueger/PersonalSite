@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
-session_start();
 
 // Instantiate the app
 if (is_file(__DIR__ . '/../.env')) {
@@ -13,6 +12,9 @@ $app = new \Slim\App($settings);
 
 // Set up dependencies
 require __DIR__ . '/../app/dependencies.php';
+
+// Register middleware
+require __DIR__ . '/../app/middleware.php';
 
 // Register routes
 require __DIR__ . '/../app/routes.php';

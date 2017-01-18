@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User\UserMapper;
+use RKA\Session;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -29,14 +30,15 @@ class AuthController extends BaseController
             return $response->withRedirect($this->router->pathFor('auth.getLogin'));
         }
 
-        $_SESSION['user'] = $user->getId();
+        $session = new Session();
+        $session->user = $user->getId();
         $this->flash->addMessage('success', 'You have been successfully logged in');
 
         $redirectTo = $this->router->pathFor('home');
 
-        if (isset($_SESSION['redirectUri'])) {
-            $redirectTo = $_SESSION['redirectUri'];
-            unset($_SESSION['redirectUri']);
+        if (isset($session->redirectUri)) {
+            $redirectTo = $session->redirectUri;
+            unset($session->redirectUri);
         }
 
         return $response->withRedirect($redirectTo);
@@ -44,12 +46,12 @@ class AuthController extends BaseController
 
     public function logout(Request $request, Response $response)
     {
-        if (!isset($_SESSION['user'])) {
+        $session = new Session;
+        if (!isset($session->user)) {
             return $response->withRedirect($this->router->pathFor('home'));
         }
 
-        unset($_SESSION['user']);
-        $this->flash->addMessage('success', 'You have been successfully logged out');
+        Session::destroy();
 
         return $response->withRedirect($this->router->pathFor('home'));
     }
