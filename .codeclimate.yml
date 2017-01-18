@@ -16,6 +16,8 @@ engines:
     checks:
       Naming/ShortVariable:
         enabled: false
+      UnusedCode/UnusedFormalParameter:
+        enabled: false
 ratings:
   paths:
   - "**.css"
