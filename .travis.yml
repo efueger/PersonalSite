@@ -5,6 +5,10 @@ language: php
 php:
 - 7.1
 
+addons:
+    code_climate:
+        repo_token: 10b7f24f2c45b1350f5adccd6dd33bc5b3b65f944f699536981d65856cca435f
+        
 env:
   global:
   - DB_HOST=127.0.0.1
@@ -13,7 +17,6 @@ env:
   - DB_PASS=
   - DB_PORT=3306
   - DB_DRIVER=mysql
-  - CODECLIMATE_REPO_TOKEN=10b7f24f2c45b1350f5adccd6dd33bc5b3b65f944f699536981d65856cca435f
 
 before_script:
   - composer install
