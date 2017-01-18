@@ -16,7 +16,7 @@ engines:
     checks:
       Naming/ShortVariable:
         enabled: false
-      UnusedCode/UnusedFormalParameter:
+      UnusedFormalParameter:
         enabled: false
 ratings:
   paths:
