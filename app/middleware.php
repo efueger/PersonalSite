@@ -1,3 +1,3 @@
 <?php
 
-$app->add(new \RKA\SessionMiddleware([]));
+$app->add(new \RKA\SessionMiddleware());
