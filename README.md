@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/railto/PersonalSite.svg?branch=master)](https://travis-ci.org/railto/PersonalSite)
 [![Code Climate](https://codeclimate.com/github/railto/PersonalSite/badges/gpa.svg)](https://codeclimate.com/github/railto/PersonalSite)
+[![Test Coverage](https://codeclimate.com/github/railto/PersonalSite/badges/coverage.svg)](https://codeclimate.com/github/railto/PersonalSite/coverage)
 
 This repo holds the source code for the application that runs my personal site at https://markrailton.com
 
