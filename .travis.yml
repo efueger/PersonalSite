@@ -29,4 +29,4 @@ script:
   - vendor/bin/phpcs
 
 after_success:
-  - php composer/bin/test-reporter
+  - vendor/bin/test-reporter
