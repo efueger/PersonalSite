@@ -6,6 +6,7 @@ php:
 - 7.1
 
 env:
+  - CODECLIMATE_REPO_TOKEN=10b7f24f2c45b1350f5adccd6dd33bc5b3b65f944f699536981d65856cca435f
   global:
   - DB_HOST=127.0.0.1
   - DB_NAME=personalsite_test
@@ -26,7 +27,3 @@ script:
 
 after_success:
   - vendor/bin/test-reporter
-
-addons:
-    code_climate:
-        repo_token: 10b7f24f2c45b1350f5adccd6dd33bc5b3b65f944f699536981d65856cca435f
